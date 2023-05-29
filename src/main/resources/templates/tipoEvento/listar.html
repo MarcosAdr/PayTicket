@@ -3,6 +3,10 @@
 <head th:replace="~{layout/card-head :: card-head}"></head>
 <body>
 <header th:replace="~{layout/layout :: header}"></header>
+<div class="container mt-5 text-center">
+    <h1 class="text-center" th:text="${titulo}"></h1>
+    <a th:href="@{/tipoEvento/form}" class="btn btn-secondary">Agregar</a>
+</div>
 <div class="row mt-4 justify-content-center">
     <div class="col-md-4" th:each="tipoEvento: ${tipoEventos}">
         <div class="container">
@@ -14,10 +18,17 @@
                             <span class="fw-bold" th:text="${tipoEvento.nombre}"></span>
                         </h5>
                     </a>
-                    <p class="card-text"><span class="fw-bold">Descricpción: </span> <span
+                    <p class="card-text"><span class="fw-bold">Descripción: </span> <span
                             th:text="${tipoEvento.descripcion}"></span></p>
                     <p class="card-text"><span class="fw-bold">Fecha de creación: </span><span
                             th:text="${tipoEvento.dateCreated}"></span></p>
+                    <div class="d-flex justify-content-center mt-3">
+                        <a class="btn btn-primary" th:href="@{${'/tipoEvento/form/' + tipoEvento.id}}"
+                           th:text="'Editar'"></a>
+                        <a class="btn btn-danger" th:href="@{${'/tipoEvento/eliminar/' + tipoEvento.id}}"
+                           th:text="'Eliminar'"
+                           onclick="return confirm('Estás seguro de eliminar el tipo de evento seleccionado');"></a>
+                    </div>
                 </div>
             </div>
         </div>

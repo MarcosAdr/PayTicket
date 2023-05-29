@@ -1,9 +1,11 @@
 package com.tesis.payticket.models.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UniqueElements;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,9 +22,10 @@ public class TipoEvento implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @UniqueElements
-    private String nombre;
+    @NotEmpty
+    private String nombre; //me gustaria validar que fuera UNICO
 
+    @NotEmpty
     private String descripcion;
 
     @OneToMany(mappedBy = "tipoEvento", fetch = FetchType.LAZY)//cascade me dice si borro un tipo de evento se borrara totos los eventos y eso no queremos

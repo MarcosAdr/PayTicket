@@ -88,6 +88,7 @@ public class EventoController {
     public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
         Evento evento = null;
+        List<TipoEvento> tiposEvento = tipoEventoService.findAll();
         if (id > 0) {
             evento = eventoService.findOne(id);
             if (evento == null) {
@@ -99,6 +100,7 @@ public class EventoController {
             return "redirect:/evento/listar";
         }
         model.put("evento", evento);
+        model.put("tiposEvento", tiposEvento);
         model.put("titulo", "Modificar información de " + evento.getNombre());
         return "evento/form";
     }
