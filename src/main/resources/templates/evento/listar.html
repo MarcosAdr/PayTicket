@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/card-head :: card-head}"></head>
+<body>
+<header th:replace="~{layout/layout :: header}"></header>
+<div class="container mt-5 text-center">
+    <h1 class="text-center" th:text="${titulo}"></h1>
+    <a th:href="@{/evento/form}" class="btn btn-secondary">Crear un evento</a>
+</div>
+<div class="row mt-4 justify-content-center">
+    <div class="col-md-4" th:each="evento: ${eventos}">
+        <div class="container">
+            <div class="card">
+                <div class="card-info">
+                    <img th:if="${#strings.length(evento.media)}" th:src="@{'/uploads/' + ${evento.media}}"
+                         th:alt="${evento.media}"/>
+                    <a class="card-title text-center" th:href="@{'/evento/ver/' + ${evento.id}}">
+                        <h5>
+                            <span class="fw-bold" th:text="${evento.nombre}"></span>
+                        </h5>
+                    </a>
+                    <p class="card-text"><span class="fw-bold">Fecha:</span> <span
+                            th:text="${evento.fechaEvento}"></span></p>
+                    <p class="card-text"><span class="fw-bold">Hora inicio: </span><span
+                            th:text="${evento.horaInicio}"></span></p>
+                    <p class="card-text"><span class="fw-bold">Hora fin: </span><span
+                            th:text="${evento.horaFin}"></span></p>
+                    <div class="d-flex justify-content-center mt-3">
+                        <a class="btn btn-primary" th:href="@{${'/evento/form/' + evento.id}}"
+                           th:text="'Editar'"></a>
+                        <a class="btn btn-danger" th:href="@{${'/evento/eliminar/' + evento.id}}"
+                           th:text="'Eliminar'"
+                           onclick="return confirm('Estás seguro de eliminar el evento seleccionado');"></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+</html>

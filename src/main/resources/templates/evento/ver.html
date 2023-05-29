@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/card-head :: card-head}"></head>
+<body>
+<head th:replace="~{layout/layout :: header}"></head>
+<div class="card">
+    <img th:if="${#strings.length(evento.media) > 0}" th:src="@{'/uploads/' + ${evento.media}}" th:alt="${evento.media}">
+    <div class="card-info">
+        <h3 th:text="${evento.nombre}"></h3>
+        <p><span class="fw-bold">Fecha:</span> <span th:text="${evento.fechaEvento}"></span></p>
+        <p><span class="fw-bold">Hora inicio:</span> <span th:text="${evento.horaInicio}"></span></p>
+        <p><span class="fw-bold">Hora fin:</span> <span th:text="${evento.horaFin}"></span></p>
+        <p><span class="fw-bold">Tipo de evento:</span> <span th:text="${tipoEvento.nombre}"></span></p>
+        <p><span class="fw-bold">Descripción:</span> <span th:text="${evento.descripcion}"></span></p>
+    </div>
+</div>
+<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+</html>
