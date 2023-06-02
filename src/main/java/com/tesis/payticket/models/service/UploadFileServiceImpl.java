@@ -26,13 +26,13 @@ public class UploadFileServiceImpl implements IUploadFileService {
 
     @Override
     public Resource load(String filename) throws MalformedURLException {
-        Path pathFoto = getPath(filename);
-        log.info("pathFoto: " + pathFoto);
+        Path pathMedia = getPath(filename);
+        log.info("pathMedia: " + pathMedia);
 
-        Resource recurso = new UrlResource(pathFoto.toUri());
+        Resource recurso = new UrlResource(pathMedia.toUri());
 
         if (!recurso.exists() || !recurso.isReadable()) {
-            throw new RuntimeException("Error: no se puede cargar la imagen: " + pathFoto.toString());
+            throw new RuntimeException("Error: no se puede cargar el Post publicitario: " + pathMedia);
         }
         return recurso;
     }
@@ -63,6 +63,7 @@ public class UploadFileServiceImpl implements IUploadFileService {
     }
 
     public Path getPath(String filename) {
+
         return Paths.get(UPLOADS_FOLDER).resolve(filename).toAbsolutePath();
     }
 

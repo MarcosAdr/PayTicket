@@ -2,6 +2,7 @@ package com.tesis.payticket.models.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -54,11 +55,12 @@ public class Evento implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
 
-/*
-    @ManyToOne
-    @JoinColumn(name = "tipo_evento_id")
-    private TipoEvento tipoEvento;
-*/
+    @Column(name="total_entradas")
+    @NotNull
+    private int totalEntradas;
+
+    @OneToMany(mappedBy = "evento")
+    private List<Localidad> localidades;
 
     @PrePersist
     public void prePersist() {

@@ -23,6 +23,7 @@ import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 
+
 @Controller
 @RequestMapping("/evento")
 @SessionAttributes("evento")
@@ -36,18 +37,16 @@ public class EventoController {
     @Autowired
     private IUploadFileService uploadFileService;
 
+
     @GetMapping(value = "/uploads/{filename:.+}")
     public ResponseEntity<Resource> verMedia(@PathVariable String filename) {
 
         Resource recurso = null;
-
         try {
             recurso = uploadFileService.load(filename);
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
                 .body(recurso);
@@ -67,6 +66,7 @@ public class EventoController {
         model.put("titulo", "Información del evento: " + evento.getNombre());
         return "evento/ver";
     }
+
     @RequestMapping(value = "/listar")
     public String listar(Model model) {
         model.addAttribute("titulo", "Mis eventos");
@@ -106,7 +106,9 @@ public class EventoController {
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String guardar(@Valid Evento evento, BindingResult result, Model model, @RequestParam("file") MultipartFile media, RedirectAttributes flash, SessionStatus status) {
+    public String guardar(@Valid Evento evento, BindingResult result, Model model,
+                          @RequestParam("file") MultipartFile media, RedirectAttributes flash,
+                          SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Crear Evento");
             List<TipoEvento> tiposEvento = tipoEventoService.findAll();
@@ -116,7 +118,6 @@ public class EventoController {
 
         TipoEvento tipoEvento = tipoEventoService.findOne(evento.getTipoEvento().getId());
         evento.setTipoEvento(tipoEvento);
-
         if (!media.isEmpty()) {
             if (evento.getId() != null && evento.getId() > 0 && evento.getMedia() != null && evento.getMedia().length() > 0) {
 

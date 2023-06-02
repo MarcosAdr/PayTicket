@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PayTicketApplication implements CommandLineRunner {
+public class PayTicketApplication implements CommandLineRunner  {
 
     @Autowired
     IUploadFileService uploadFileService;

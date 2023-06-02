@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/card-head :: card-head}"></head>
+<body>
+<header th:replace="~{layout/layout :: header}"></header>
+<div class="container mt-5">
+    <h1 class="text-center" th:text="${titulo}"></h1>
+</div>
+<div class="card">
+    <form th:action="@{/localidad/form/}" th:object="${localidad}" method="post">
+        <div class="form-group">
+            <label>Evento</label>
+            <input th:value="${localidad.evento.nombre}" th:class="form-control" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label>Localidad: </label>
+            <input type="text" th:field="*{nombre}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Descripción: </label>
+            <textarea type="text" th:field="*{descripcion}" class="form-control"></textarea>
+        </div>
+        <div class="form-group text-center py-2">
+            <input type="submit" th:value="${localidad.id != null ? 'Aceptar' : 'Añadir'}"
+                   class="btn btn-secondary btn-lg">
+        </div>
+
+    </form>
+</div>
+<footer th:replace="~{layout/layout :: footer}"></footer>
+</body>
+</html>
