@@ -1,7 +1,9 @@
 package com.tesis.payticket.models.service;
 
 import com.tesis.payticket.models.dao.IEventoDao;
+import com.tesis.payticket.models.dao.ILocalidadDao;
 import com.tesis.payticket.models.entity.Evento;
+import com.tesis.payticket.models.entity.Localidad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,9 @@ public class EventoServiceImpl implements IEventoService {
 
     @Autowired
     private IEventoDao eventoDao;
+
+    @Autowired
+    private ILocalidadDao localidadDao;
 
     @Override
     @Transactional(readOnly = true)
@@ -35,5 +40,10 @@ public class EventoServiceImpl implements IEventoService {
     @Override
     public void delete(Long id) {
         eventoDao.deleteById(id);
+    }
+    @Override
+    @Transactional
+    public void saveLocalidad(Localidad localidad) {
+        localidadDao.save(localidad);
     }
 }

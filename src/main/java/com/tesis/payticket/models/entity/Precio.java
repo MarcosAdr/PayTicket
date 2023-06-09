@@ -1,10 +1,11 @@
 package com.tesis.payticket.models.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
+
+
 
 @Getter
 @Setter
@@ -17,7 +18,10 @@ public class Precio {
     private Long id;
 
     @NotNull
-    private double precio;
+    private float precio;
+    @OneToOne(mappedBy = "precio", fetch = FetchType.LAZY)
+    private Localidad localidad;
+
 
 
 }

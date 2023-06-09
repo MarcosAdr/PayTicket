@@ -42,6 +42,12 @@
                    th:errors="*{tipoEvento}"></small>-->
         </div>
         <div class="form-group">
+            <label>Total de entradas:</label>
+            <input type="number" th:field="*{totalEntradas}" class="form-control">
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('totalEntradas')}"
+                   th:errors="*{totalEntradas}"></small>
+        </div>
+        <div class="form-group">
             <label>Post publicitario:</label>
             <input type="file" name="file" class="form-control">
         </div>

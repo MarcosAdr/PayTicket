@@ -7,24 +7,51 @@
     <h1 class="text-center" th:text="${titulo}"></h1>
 </div>
 <div class="card">
-    <form th:action="@{/localidad/form/}" th:object="${localidad}" method="post">
+    <a th:href="@{'/evento/ver/'+${localidad.evento.id}}" th:text="'&laquo; Volver'" class="btn btn-light"></a>
+    <form th:action="@{/localidad/form}" th:object="${localidad}" method="post">
         <div class="form-group">
             <label>Evento</label>
             <input th:value="${localidad.evento.nombre}" th:class="form-control" disabled="disabled">
         </div>
         <div class="form-group">
+            <label>Entradas disponibles:</label>
+            <input th:value="${localidad.evento.totalEntradas}" th:class="form-control" disabled="disabled">
+        </div>
+        <div class="form-group">
             <label>Localidad: </label>
             <input type="text" th:field="*{nombre}" class="form-control">
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+                   th:errors="*{nombre}"></small>
+        </div>
+        <div class="row g-2">
+            <div class="col-md">
+                <label>Número de entradas: </label>
+                <input type="number" name="entradas" class="form-control"
+                       th:value="${localidad.evento.totalEntradas}">
+                <small class="form-text text-danger" th:if="${errorEntradas}"
+                       th:text="${errorEntradas}"></small>
+            </div>
+            <div class="col-md">
+                <label>Precio: </label>
+                <div class="d-flex">
+                    <span class="input-group-text">$</span>
+                    <input  type="number" step="0.01" th:object="${localidad.precio}" th:field="*{precio}"
+                           class="form-control" required>
+                </div>
+                <small class="form-text text-danger" th:if="${errorPrecio}"
+                       th:text="${errorPrecio}"></small>
+            </div>
         </div>
         <div class="form-group">
             <label>Descripción: </label>
             <textarea type="text" th:field="*{descripcion}" class="form-control"></textarea>
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('descripcion')}"
+                   th:errors="*{descripcion}"></small>
         </div>
         <div class="form-group text-center py-2">
             <input type="submit" th:value="${localidad.id != null ? 'Aceptar' : 'Añadir'}"
                    class="btn btn-secondary btn-lg">
         </div>
-
     </form>
 </div>
 <footer th:replace="~{layout/layout :: footer}"></footer>

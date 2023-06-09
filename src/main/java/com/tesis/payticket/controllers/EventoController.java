@@ -137,7 +137,7 @@ public class EventoController {
         eventoService.save(evento);
         status.setComplete();
         flash.addFlashAttribute("success", mensajeFlash);
-        return "redirect:/evento/listar";
+        return "redirect:/evento/ver/"+ evento.getId();
     }
 
     @RequestMapping(value = "/eliminar/{id}")

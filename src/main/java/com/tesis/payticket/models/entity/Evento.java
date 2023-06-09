@@ -1,8 +1,7 @@
 package com.tesis.payticket.models.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -56,7 +55,6 @@ public class Evento implements Serializable {
     private Date lastUpdate;
 
     @Column(name="total_entradas")
-    @NotNull
     private int totalEntradas;
 
     @OneToMany(mappedBy = "evento")
