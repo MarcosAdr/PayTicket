@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public class TipoEventoServiceImpl implements ITipoEventoService{
 
-
     @Autowired
     private ITipoEventoDao tipoEventoDao;
 
@@ -29,6 +28,7 @@ public class TipoEventoServiceImpl implements ITipoEventoService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public TipoEvento findOne(Long id) {
         return tipoEventoDao.findById(id).orElse(null);
     }

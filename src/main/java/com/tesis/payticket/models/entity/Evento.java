@@ -57,8 +57,11 @@ public class Evento implements Serializable {
     @Column(name="total_entradas")
     private int totalEntradas;
 
-    @OneToMany(mappedBy = "evento")
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Localidad> localidades;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Ubicacion ubicacion;
 
     @PrePersist
     public void prePersist() {

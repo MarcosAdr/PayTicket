@@ -11,18 +11,21 @@
     <form th:action="@{/localidad/form}" th:object="${localidad}" method="post">
         <div class="form-group">
             <label>Evento</label>
-            <input th:value="${localidad.evento.nombre}" th:class="form-control" disabled="disabled">
+            <input th:value="${localidad.evento.nombre}" class="text-center form-control" disabled="disabled">
         </div>
-        <div class="form-group">
-            <label>Entradas disponibles:</label>
-            <input th:value="${localidad.evento.totalEntradas}" th:class="form-control" disabled="disabled">
+        <div class="form-floating py-2">
+            <input th:value="${localidad.evento.totalEntradas}" class="form-control" disabled="disabled"
+                   id="floatInputValue2" placeholder="Entradas Disponibles">
+            <label for="floatInputValue2">Entradas disponibles</label>
         </div>
-        <div class="form-group">
-            <label>Localidad: </label>
-            <input type="text" th:field="*{nombre}" class="form-control">
+
+        <div class="form-floating py-2">
+            <input type="text" th:field="*{nombre}" class="form-control" id="floatInputValue" placeholder="Localidad">
+            <label for="floatInputValue">Localidad</label>
             <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
                    th:errors="*{nombre}"></small>
         </div>
+
         <div class="row g-2">
             <div class="col-md">
                 <label>Número de entradas: </label>
@@ -35,16 +38,17 @@
                 <label>Precio: </label>
                 <div class="d-flex">
                     <span class="input-group-text">$</span>
-                    <input  type="number" step="0.01" th:object="${localidad.precio}" th:field="*{precio}"
+                    <input type="number" step="0.01" th:object="${localidad.precio}" th:field="*{precio}"
                            class="form-control" required>
                 </div>
                 <small class="form-text text-danger" th:if="${errorPrecio}"
                        th:text="${errorPrecio}"></small>
             </div>
         </div>
-        <div class="form-group">
-            <label>Descripción: </label>
-            <textarea type="text" th:field="*{descripcion}" class="form-control"></textarea>
+        <div class="form-floating py-2">
+                <textarea th:field="*{descripcion}" class="form-control" placeholder="Descripción del evento"
+                          id="floatingTextarea2" style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Descripción</label>
             <small class="form-text text-danger" th:if="${#fields.hasErrors('descripcion')}"
                    th:errors="*{descripcion}"></small>
         </div>

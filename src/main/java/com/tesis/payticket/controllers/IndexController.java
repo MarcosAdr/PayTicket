@@ -8,4 +8,9 @@ public class IndexController {
     public String index() {
         return "index";
     }
+    @GetMapping(value = {"/ubicacion/ver"})
+    public String verMap() {
+        return "form";
+    }
+
 }

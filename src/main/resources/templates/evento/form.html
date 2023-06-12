@@ -1,67 +1,90 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout/layout :: head}"></head>
+<head th:replace="~{layout/card-head :: card-head}"></head>
 <body>
 <header th:replace="~{layout/layout :: header}"></header>
 <div class="container mt-5">
     <h1 class="text-center" th:text="${titulo}"></h1>
 </div>
-<div class="container">
-    <form th:action="@{/evento/form}" th:object="${evento}" method="post" class="col-md-6 mx-auto"
+<div class="card">
+    <form th:action="@{/evento/form}" th:object="${evento}" method="post" id="myForm"
           enctype="multipart/form-data">
         <div class="form-group">
-            <label>Nombre del evento:</label>
-            <input type="text" th:field="*{nombre}" class="form-control">
+
+            <input type="text" th:field="*{nombre}" class="form-control form-control-lg" placeholder="Nombre del evento">
             <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
                    th:errors="*{nombre}"></small>
         </div>
         <div class="form-group">
-            <label>Fecha del evento:</label>
-            <input type="date" th:field="*{fechaEvento}" class="form-control">
+            <label>Categoría</label>
+            <select th:field="*{tipoEvento}" class="form-control form-control-lg">
+                <option th:each="tipoEvento : ${tiposEvento}" th:value="${tipoEvento.id}"
+                        th:text="${tipoEvento.nombre}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Fecha</label>
+            <input type="date" th:field="*{fechaEvento}" class="form-control form-control-lg">
             <small class="form-text text-danger" th:if="${#fields.hasErrors('fechaEvento')}"
                    th:errors="*{fechaEvento}"></small>
         </div>
-        <div class="form-group">
-            <label>Hora de inicio:</label>
-            <input type="time" th:field="*{horaInicio}" class="form-control">
-            <small class="form-text text-danger" th:if="${#fields.hasErrors('horaInicio')}"
-                   th:errors="*{horaInicio}"></small>
+        <div class="row g-2">
+            <div class="col-md">
+                <label>Hora de inicio:</label>
+                <input type="time" th:field="*{horaInicio}" class="form-control form-control-lg">
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('horaInicio')}"
+                       th:errors="*{horaInicio}"></small>
+            </div>
+            <div class="col-md">
+                <label>Hora de fin:</label>
+                <input type="time" th:field="*{horaFin}" class="form-control form-control-lg">
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('horaFin')}"
+                       th:errors="*{horaFin}"></small>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Hora de fin:</label>
-            <input type="time" th:field="*{horaFin}" class="form-control">
-            <small class="form-text text-danger" th:if="${#fields.hasErrors('horaFin')}"
-                   th:errors="*{horaFin}"></small>
-        </div>
-        <div class="form-group">
-            <label>Tipo de evento:</label>
-            <select th:field="*{tipoEvento}" class="form-control">
-                <option th:each="tipoEvento : ${tiposEvento}" th:value="${tipoEvento.id}" th:text="${tipoEvento.nombre}"></option>
-            </select>
-<!--            <small class="form-text text-danger" th:if="${#fields.hasErrors('tipoEvento')}"
-                   th:errors="*{tipoEvento}"></small>-->
-        </div>
+
         <div class="form-group">
             <label>Total de entradas:</label>
-            <input type="number" th:field="*{totalEntradas}" class="form-control">
+            <input type="number" th:field="*{totalEntradas}" class="form-control form-control-lg">
             <small class="form-text text-danger" th:if="${#fields.hasErrors('totalEntradas')}"
                    th:errors="*{totalEntradas}"></small>
         </div>
         <div class="form-group">
-            <label>Post publicitario:</label>
-            <input type="file" name="file" class="form-control">
+            <label>Post publicitario</label>
+            <input type="file" id="file" name="file" class="form-control form-control-lg">
         </div>
-        <div class="form-group">
-            <label>Descripción del evento:</label>
-            <textarea th:field="*{descripcion}" class="form-control" rows="5"></textarea>
+        <div class="form-floating py-2">
+            <input type="text" name="direccion" class="form-control form-control-lg" id="direccion" placeholder="Direccion"
+                   th:value="${ubicacion != null ? ubicacion.direccion : ''}" >
+            <label>Dirección</label>
+        </div>
+        <input type="hidden" name="ubicacionId" th:value="${ubicacion != null ? ubicacion.id : ''}" />
+        <div >
+            <div id="map"></div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    initMap();
+                });
+            </script>
+        </div>
+        <div class="form-floating py-2">
+                <textarea th:field="*{descripcion}" class="form-control form-control-lg" placeholder="Descripción del evento"
+                          id="floatingTextarea2" style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Descripción</label>
             <small class="form-text text-danger" th:if="${#fields.hasErrors('descripcion')}"
                    th:errors="*{descripcion}"></small>
         </div>
+
         <div class="form-group text-center py-2">
-            <input type="submit" th:value="${evento.id != null ? 'Aceptar' : 'Crear Evento'}" class="btn btn-secondary btn-lg">
+            <input type="submit" th:value="${evento.id != null ? 'Aceptar' : 'Crear Evento'}"
+                   class="btn btn-secondary btn-lg">
         </div>
     </form>
 </div>
 
+</div>
+<footer th:replace="~{layout/layout :: footer}"></footer>
 </body>
 </html>
+
+<!--AIzaSyC4MsF7JmHdM1s1G9nHHb_lLys2kiLIvCY-->
