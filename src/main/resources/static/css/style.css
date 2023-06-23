@@ -1,0 +1,68 @@
+/*Eventos*/
+.card-img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-bottom-right-radius: 0px;
+}
+
+.card h3{
+    text-transform: uppercase;
+    color: rgb(177,177,177);
+    font-size: .8rem;
+}
+
+.card h5{
+    font-size: 1.25rem;
+}
+
+.card p{
+    line-height: 1.4em;
+}
+/*----------------------------------*/
+/*Form Evento*/
+.map-container {
+    width: 100%;
+    height: 600px;
+    box-shadow: rgb(22, 33, 50) 0 5px 15px;
+}
+/*-----------------------------------------*/
+/*Detalle Evento*/
+.btn-localidad{
+    background-color: #162132;
+    color: #fff;
+}
+
+.btn-round {
+    border-radius: 50%;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-green {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-red {
+    background-color: #dc3545;
+    color: #fff;
+}
+/*-------------------------------------*/
+/*Login*/
+.box-area {
+    width: 930px;
+}
+
+.right-box {
+    padding: 40px 30px 40px 40px;
+
+}
+::placeholder {
+    font-size: 16px;
+}
+.left-box {
+    /*       background-color: #0a53be;*/
+    background: url("../images/background-leftbox.png");
+    background-size: cover;
+}
+/*--------------------------------------------*/

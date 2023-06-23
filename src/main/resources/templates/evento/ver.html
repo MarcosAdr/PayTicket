@@ -1,69 +1,108 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout/card-head :: card-head}"></head>
+<head th:replace="~{layout/head :: head}"></head>
 <body>
-<head th:replace="~{layout/layout :: header}"></head>
-<div class="card">
-    <img th:if="${#strings.length(evento.media) > 0}" class="img-thumbnail rounded float-left" style="max-width: 25%;"
-         th:src="@{'/evento/uploads/' + ${evento.media}}" th:alt="${evento.media}">
-    <div class="card-info">
-        <h3 th:text="${evento.nombre}"></h3>
-        <p><span class="fw-bold">Fecha:</span> <span th:text="${evento.fechaEvento}"></span></p>
-        <p><span class="fw-bold">Hora inicio:</span> <span th:text="${evento.horaInicio}"></span></p>
-        <p><span class="fw-bold">Hora fin:</span> <span th:text="${evento.horaFin}"></span></p>
-        <p><span class="fw-bold">Tipo de evento:</span> <span th:text="${tipoEvento.nombre}"></span></p>
-        <p><span class="fw-bold">Descripción:</span> <span th:text="${evento.descripcion}"></span></p>
-        <p th:if="${evento.totalEntradas > 0}">
-            <span class="fw-bold">Entradas:</span> <span th:text="${evento.totalEntradas}"></span>
-        </p>
-
-    </div>
-    <div class="justify-content-center align-items-center">
-        <div th:if="${evento.totalEntradas > 0}">
-            <a class="btn btn-primary" th:href="@{'/localidad/form/' + ${evento.id}}">Añadir Localidad</a>
-        </div>
-        <div th:if="${evento.totalEntradas == 0}">
-            <p class="text-danger">Total de entradas asignadas</p>
-        </div>
-
-    </div>
-    <div th:if="${#lists.isEmpty(evento.localidades)}" class="alert alert-info my-4 text-center"
-         th:text="'No se han asignado localidades'"></div>
-
-    <table th:if="${not #lists.isEmpty(evento.localidades)}" class="table">
-        <thead class="text-center">
-        <tr>
-            <th>Localidad</th>
-            <th>N° Entradas</th>
-            <th>Valor</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody class="table-group-divider text-center">
-        <tr th:each="localidad: ${evento.localidades}">
-            <td th:text="${localidad.nombre}"></td>
-            <td th:text="${localidad.entradas}"></td>
-            <td th:text="'c/u $'+${localidad.precio.precio}"></td>
-            <td>
-                <div class="btn-group" role="group">
-                    <a th:href="@{${'/localidad/form/'+localidad.evento.id+'/'+localidad.id}}" class="btn btn-success btn-sm"><i
-                            class="bi bi-pencil-square"></i></a>
-                    <a th:href="@{${'/localidad/eliminar/'+localidad.evento.id+'/'+localidad.id}}"
-                        class="btn btn-danger btn-sm"
-                       onclick="return confirm('Estás seguro de eliminar la localidad');"
-                    ><i class="bi bi-trash"></i></a>
-
-                </div>
-
-
-            </td>
-        </tr>
-        </tbody>
-
-    </table>
-
-
+<head th:replace="~{layout/header :: header}"></head>
+<div class="text-center">
+    <h1 class="text-white" th:text="${titulo}"></h1>
 </div>
-<footer th:replace="~{layout/layout :: footer}"></footer>
+<div class="row g-5 justify-content-evenly">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-6 col-md-5">
+                    <img th:if="${#strings.length(evento.media) > 0}" class="card-img img-fluid rounded-start"
+                         alt="img"
+                         th:src="@{'/evento/uploads/' + ${evento.media}}"
+                         th:alt="${evento.media}"/>
+                </div>
+                <div class="col-6 col-md-7">
+                    <div class="card-body d-flex flex-column">
+                        <div class="h-100">
+                            <h3 class="card-title">Evento <span th:text="${evento.tipoEvento.nombre}"></span></h3>
+                            <h2 class="card-title"><span th:text="${evento.nombre}"></span></h2>
+                            <p class="card-text">
+                                <span th:text="${evento.descripcion}"></span>
+                            </p>
+                            <h5 class="card-title mb-3">
+                                <i class="bi bi-geo-alt"></i>
+                                <strong>
+                                        <span th:if="${evento.ubicacion != null}"
+                                              th:text="${evento.ubicacion.nombre}"></span>
+                                    <span th:unless="${evento.ubicacion != null}"> No hay ubicación asignada</span>
+                                </strong>
+                            </h5>
+
+                            <h5 class="card-title mb-3"><i class="bi bi-alarm"></i>
+                                <strong> <span th:text="${evento.horaInicio}"></span></strong>
+                            </h5>
+                            <h5 class="card-title mb-3"><i class="bi bi-calendar-event"></i>
+                                <strong> <span th:text="${evento.fechaEvento}"></span></strong>
+                            </h5>
+                            <!--<h5 class="card-title mb-3" th:if="${evento.totalEntradas >0}"><i
+                                    class="bi bi-ticket-perforated"></i>
+                                <strong> <span th:text="${evento.totalEntradas}"></span></strong>
+                            </h5>-->
+                            <h5 class="card-title mb-3" th:if="${evento.totalEntradas > 0}">
+                                <i class="bi bi-ticket-perforated"></i>
+                                <strong><span th:text="${evento.totalEntradas}"></span></strong>
+                                <span> Entradas disponibles</span>
+                            </h5>
+                            <h5 class="card-title mb-3" th:unless="${evento.totalEntradas > 0}">
+                                <i class="bi bi-ticket-perforated"></i>
+                                <strong><span>0</span></strong>
+                                <span> Entradas disponibles</span>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="d-flex flex-column flex-sm-column align-items-center py-2">
+                    <div th:if="${evento.totalEntradas > 0}">
+                        <a class="btn btn-localidad" th:href="@{'/localidad/form/' + ${evento.id}}">Añadir Localidad</a>
+                    </div>
+                    <div th:if="${evento.totalEntradas == 0}">
+                        <p class="text-danger">Total de entradas asignadas</p>
+                    </div>
+                </div>
+                <div class="container py-sm-4">
+                    <table class="table table-hover table-sm">
+
+                            <thead class="text-center">
+                            <tr>
+                                <th>Localidad</th>
+                                <th>N° Entradas</th>
+                                <th>Valor</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-hover table-group-divider text-center">
+                            <tr th:each="localidad: ${evento.localidades}">
+                                <td th:text="${localidad.nombre}"></td>
+                                <td th:text="${localidad.entradas}"></td>
+                                <td th:text="'c/u $'+${localidad.precio.precio}"></td>
+                                <td>
+                                    <a th:href="@{${'/localidad/form/'+localidad.evento.id+'/'+localidad.id}}"
+                                       class="btn btn-green btn-round btn-sm"><i
+                                            class="bi bi-pencil-square"></i></a>
+                                    <a th:href="@{${'/localidad/eliminar/'+localidad.evento.id+'/'+localidad.id}}"
+                                       class="btn btn-red btn-round btn-sm"
+                                       onclick="return confirm('Estás seguro de eliminar la localidad');"
+                                    ><i class="bi bi-trash"></i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+
+                    </table>
+                </div>
+                <div class="d-flex flex-column flex-sm-column align-items-center py-2">
+                    <a class="btn btn-localidad" th:href="@{/evento/listar}">Salir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{layout/footer :: footer}"></footer>
 </body>
 </html>

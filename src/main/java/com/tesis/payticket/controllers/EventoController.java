@@ -71,7 +71,7 @@ public class EventoController {
 
         model.put("evento", evento);
         model.put("tipoEvento", evento.getTipoEvento());
-        model.put("titulo", "Información del evento: " + evento.getNombre());
+        model.put("titulo", "Detalle del evento");
         return "evento/ver";
     }
 
@@ -199,7 +199,8 @@ public class EventoController {
 
         ubicacionService.save(ubicacion);
         eventoService.save(evento);
-        String mensajeFlash = (evento.getId() != null) ? "Evento editado con éxito!" : "Evento creado con exito";
+        /*Verificar mensaje*/
+        String mensajeFlash = (evento.getId() == null) ? "Evento editado con éxito!" : "Evento creado con exito";
         flash.addFlashAttribute("success", mensajeFlash);
         status.setComplete();
         return "redirect:/evento/ver/" + evento.getId();

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+  <meta charset="UTF-8">
+  <title th:text="${titulo}"></title>
+
+  <!--Bootstrap CssJs-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+          crossorigin="anonymous"></script>
+  <!--Bootstrap icons-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!--CSS-->
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+  <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <style>
+    body{
+      background-color: rgb(22, 33, 50);
+    }
+
+    @media screen {
+      .sidebar{
+        background-color: rgb(91, 119, 185, 0.15);
+        backdrop-filter: blur(10px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+</body>
+</html>

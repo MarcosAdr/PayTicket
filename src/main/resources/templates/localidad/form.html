@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout/card-head :: card-head}"></head>
+<head th:replace="~{layout/head :: head}"></head>
 <body>
-<header th:replace="~{layout/layout :: header}"></header>
+
+<header th:replace="~{layout/header :: header}"></header>
 <div class="container mt-5">
     <h1 class="text-center" th:text="${titulo}"></h1>
 </div>
@@ -58,6 +59,6 @@
         </div>
     </form>
 </div>
-<footer th:replace="~{layout/layout :: footer}"></footer>
+<footer th:replace="~{layout/footer :: footer}"></footer>
 </body>
 </html>

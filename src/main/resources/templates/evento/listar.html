@@ -1,13 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout/card-head :: card-head}"></head>
+<head th:replace="~{layout/head :: head}"></head>
 <body>
-<header th:replace="~{layout/layout :: header}"></header>
-<div class="container mt-5 text-center">
-    <h1 class="text-center" th:text="${titulo}"></h1>
+<header th:replace="~{layout/header :: header}"></header>
+
+<div class="text-center">
+    <h1 class="text-white" th:text="${titulo}"></h1>
     <a th:href="@{/evento/form}" class="btn btn-secondary">Crear un evento</a>
 </div>
-<div class="row mt-4 justify-content-center">
+
+<div class="container py-4" style="color:#162132 ">
+    <div class="row g-5 justify-content-evenly">
+        <div class="col-lg-6" th:each="evento: ${eventos}">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-6 col-md-5">
+                        <img th:if="${#strings.length(evento.media) > 0}" class="card-img img-fluid rounded-start"
+                             th:src="@{'/evento/uploads/' + ${evento.media}}"
+                             th:alt="${evento.media}"/>
+                    </div>
+                    <div class="col-6 col-md-7">
+                        <div class="card-body d-flex flex-column">
+                            <div class="h-100">
+                                <h3 class="card-title">Evento <span th:text="${evento.tipoEvento.nombre}"></span></h3>
+                                <h2 class="card-title"><span th:text="${evento.nombre}"></span></h2>
+                                <p class="card-text">
+                                    <span th:text="${evento.descripcion}"></span>
+                                </p>
+                                <h5 class="card-title mb-3">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <strong>
+                                        <span th:if="${evento.ubicacion != null}"
+                                              th:text="${evento.ubicacion.nombre}"></span>
+                                        <span th:unless="${evento.ubicacion != null}">No hay ubicación asignada</span>
+                                    </strong>
+                                </h5>
+
+                                <h5 class="card-title mb-3"><i class="bi bi-alarm"></i>
+                                    <strong> <span th:text="${evento.horaInicio}"></span></strong>
+                                </h5>
+                                <h5 class="card-title mb-3"><i class="bi bi-calendar-event"></i>
+                                    <strong> <span th:text="${evento.fechaEvento}"></span></strong>
+                                </h5>
+                                <div class="justify-content-center">
+                                    <div class="btn-group">
+                                        <a th:href="@{${'/evento/form/' + evento.id}}" class="btn btn-dark"><i
+                                                class="bi bi-pencil-square"></i> Editar
+                                        </a>
+                                        <a th:href="@{${'/evento/eliminar/' + evento.id}}" class="btn btn-secondary"
+                                           onclick="return confirm('Estás seguro de eliminar el evento seleccionado');"><i
+                                                class="bi bi-calendar2-x-fill"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="row mt-4 justify-content-center">
     <div class="col-md-4" th:each="evento: ${eventos}">
         <div class="container">
             <div class="card">
@@ -40,9 +97,9 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 
-<footer th:replace="~{layout/layout :: footer}"></footer>
+<footer th:replace="~{layout/footer :: footer}"></footer>
 </body>
 </html>
