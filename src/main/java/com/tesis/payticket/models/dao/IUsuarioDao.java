@@ -7,4 +7,6 @@ public interface IUsuarioDao extends CrudRepository<Usuario, Long>{
 
     public Usuario findByUsername(String username);// aqui puedo cambiar a buscarlo por el correo
 
+    public Usuario findByEmail(String email);
+
 }

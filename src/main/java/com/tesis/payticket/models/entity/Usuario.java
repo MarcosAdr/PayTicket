@@ -18,8 +18,15 @@ public class Usuario implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(length = 30, unique = true)
+    @Column(length = 30)
     private String username;
+
+    private String nombre;
+
+    private String apellido;
+
+    @Column(unique = true)
+    private String email;
 
     @Column(length = 60)
     private String password;
