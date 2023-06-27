@@ -17,4 +17,9 @@ INSERT INTO localidad(nombre, descripcion, entradas, evento_id ,precio_id) VALUE
 INSERT INTO localidad(nombre, descripcion, entradas, evento_id ,precio_id) VALUES('General', 'Público en general', 25,2,3);
 INSERT INTO localidad(nombre, descripcion, entradas, evento_id ,precio_id) VALUES('VIP', 'Autoridades', 25,2,4);
 
+INSERT INTO usuario(username, password, enabled) VALUES('marcos','$2a$10$Sbf6y6ictIHUkyqYnKNKCOyPzzQW3Rk2943BEtiO0hPDmFabT6A2i',1);
+INSERT INTO usuario(username, password, enabled) VALUES('admin','$2a$10$qhDmG1Ewl9NybPXfxw9Vyeivd24vi0hchZIJXWHc1fnSSaYRjM3ZO',1);
 
+INSERT INTO role(usuario_id, rol) VALUES(1,'ROLE_USER');
+INSERT INTO role(usuario_id, rol) VALUES(2,'ROLE_ADMIN');
+INSERT INTO role(usuario_id, rol) VALUES(2,'ROLE_USER');

@@ -7,7 +7,38 @@
     <h1 class="text-white" th:text="${titulo}"></h1>
     <a th:href="@{/tipoEvento/form}" class="btn btn-secondary">Agregar</a>
 </div>
-<div class="row mt-4 justify-content-center">
+
+<div class="container container-sm py-4" style="color:#162132 ">
+    <div class="row g-5 justify-content-evenly">
+        <div class="col-lg-6" th:each="tipoEvento: ${tipoEventos}">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="card-body d-flex flex-column">
+                        <div class="h-100">
+                            <h2 class="card-title text-center" th:text="${tipoEvento.nombre}"></h2>
+                            <p class="card-text"><span th:text="${tipoEvento.descripcion}"></span></p>
+                            <div class="d-flex justify-content-center">
+                                <div class="btn-group text-center">
+                                    <a th:href="@{${'/tipoEvento/form/' + tipoEvento.id}}" class="btn btn-dark"><i
+                                            class="bi bi-pencil-square"></i> Editar
+                                    </a>
+                                    <a th:href="@{${'/tipoEvento/eliminar/' + tipoEvento.id}}" class="btn btn-secondary"
+                                       onclick="return confirm('Estás seguro de eliminar el tipo de evento seleccionado');">
+                                        <i class="bi bi-file-earmark-x"></i>
+                                        Eliminar
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="row mt-4 justify-content-center">
     <div class="col-md-4" th:each="tipoEvento: ${tipoEventos}">
         <div class="container">
             <div class="card">
@@ -33,7 +64,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 <footer th:replace="~{layout/footer :: footer}"></footer>
 
 </body>

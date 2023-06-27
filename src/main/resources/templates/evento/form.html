@@ -20,18 +20,18 @@
         <div class="col-md-6">
             <form th:action="@{/evento/form}" th:object="${evento}" method="post" id="myForm"
                   enctype="multipart/form-data">
-                <input type="text" th:field="*{nombre}" class="form-control form-control-lg "
+                <input type="text" th:field="*{nombre}" class="form-control form-control-lg fs-6"
                        placeholder="Nombre del evento">
                 <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
                        th:errors="*{nombre}"></small>
                 <div class="form-floating py-2">
-                    <input type="text" name="direccion" class="form-control form-control-lg" id="direccion"
+                    <input type="text" name="direccion" class="form-control form-control-lg fs-6" id="direccion"
                            placeholder="Direccion"
                            th:value="${ubicacion != null ? ubicacion.direccion : ''}">
                     <label>Dirección del evento</label>
                 </div>
                 <div class="form-floating py-2">
-                <textarea th:field="*{descripcion}" class="form-control form-control-lg"
+                <textarea th:field="*{descripcion}" class="form-control form-control-lg fs-6"
                           placeholder="Descripción del evento"
                           id="floatingTextarea2" style="height: 100px"></textarea>
                     <label for="floatingTextarea2">Descripción del evento</label>
@@ -39,38 +39,38 @@
                            th:errors="*{descripcion}"></small>
                 </div>
                 <label>Categoría</label>
-                <select th:field="*{tipoEvento}" class="form-control form-control-lg">
+                <select th:field="*{tipoEvento}" class="form-control form-control-lg fs-6">
                     <option th:each="tipoEvento : ${tiposEvento}" th:value="${tipoEvento.id}"
                             th:text="${tipoEvento.nombre}"></option>
                 </select>
                 <label>Fecha</label>
-                <input type="date" th:field="*{fechaEvento}" class="form-control form-control-lg">
+                <input type="date" th:field="*{fechaEvento}" class="form-control form-control-lg fs-6">
                 <small class="form-text text-danger" th:if="${#fields.hasErrors('fechaEvento')}"
                        th:errors="*{fechaEvento}"></small>
                 <div class="row g-2">
                     <div class="col-md">
                         <label>Hora de inicio:</label>
-                        <input type="time" th:field="*{horaInicio}" class="form-control form-control-lg">
+                        <input type="time" th:field="*{horaInicio}" class="form-control form-control-lg fs-6">
                         <small class="form-text text-danger" th:if="${#fields.hasErrors('horaInicio')}"
                                th:errors="*{horaInicio}"></small>
                     </div>
                     <div class="col-md">
                         <label class="text-white">Hora de fin:</label>
-                        <input type="time" th:field="*{horaFin}" class="form-control form-control-lg">
+                        <input type="time" th:field="*{horaFin}" class="form-control form-control-lg fs-6">
                         <small class="form-text text-danger" th:if="${#fields.hasErrors('horaFin')}"
                                th:errors="*{horaFin}"></small>
                     </div>
                 </div>
                 <label>Total de entradas:</label>
-                <input type="number" th:field="*{totalEntradas}" class="form-control form-control-lg">
+                <input type="number" th:field="*{totalEntradas}" class="form-control form-control-lg fs-6">
                 <small class="form-text text-danger" th:if="${#fields.hasErrors('totalEntradas')}"
                        th:errors="*{totalEntradas}"></small>
                 <label>Post publicitario</label>
-                <input type="file" id="file" name="file" class="form-control form-control-lg">
+                <input type="file" id="file" name="file" class="form-control form-control-lg fs-6">
 
                     <div class="text-center py-2">
                         <input type="submit" th:value="${evento.id != null ? 'Aceptar' : 'Crear Evento'}"
-                               class="btn btn-localidad btn-lg py-2">
+                               class="btn btn-localidad py-2">
                         <input type="hidden" name="ubicacionId" th:value="${ubicacion != null ? ubicacion.id : ''}"/>
                     </div>
 
