@@ -66,3 +66,77 @@
     background-size: cover;
 }
 /*--------------------------------------------*/
+/*INDEX*/
+.contenedor {
+    width: 90%;
+    max-width: 1200px;
+    overflow: hidden;
+    margin: auto;
+    padding: 60px 0;
+
+}
+.header {
+    height: 100vh;
+    background-image: linear-gradient(to top, rgba(22, 33, 50, 0.4) 0%, rgba(91, 119, 185, 0.5) 100%), url("../images/Background/background-index.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+
+}
+.head{
+    text-align: center;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    color: #fff;
+
+}
+.checklist-servicio{
+    width: 45%;
+}
+
+.service{
+    margin-bottom: 20px;
+}
+
+.n-service{
+    margin-bottom: 7px;
+    color: #5b77b9;
+}
+
+.number{
+    display: inline-block;
+    background-image: linear-gradient(to top, #162132 0%, #5b77b9 100%);
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    font-weight: 700;
+    line-height: 30px;
+    margin-right: 5px;
+}
+.subtitulo{
+    text-align: center;
+    font-weight: 400;
+    color: #5b77b9;
+    margin-bottom:40px;
+    font-size: 50px;
+
+}
+.contenedor-servicio img{
+    width: 40%;
+}
+.contenedor-servicio{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color:#fff;
+
+}
+/*--------------------------------------------*/

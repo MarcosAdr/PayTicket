@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/head :: head}"></head>
-<body>
-<header th:replace="~{layout/header :: header}"></header>
-<div class="text-center">
-    <h1 class="text-white">Inicio</h1>
+<body class="bg-white">
+
+<div class="header">
+    <header th:replace="~{layout/header :: header}"></header>
+    <div class="contenedor head">
+        <img class="d-flex" src="images/logos+eslogan/logo-index.png"
+             alt="logo"  height="200">
+        <h2>! Tu acceso online al entrentenimiento ¡</h2>
+    </div>
 </div>
+<main>
+    <section class="contenedor" id="servicio">
+        <h2 class="subtitulo">¿Por qué comprar en PayTicket?</h2>
+        <div class="contenedor-servicio">
+            <img src="images/Online%20payment%20_Isometric.svg" alt="">
+
+            <div class="checklist-servicio">
+                <div class="service">
+                    <h3 class="n-service"><span class="number">1</span>Atención Personalizada</h3>
+                    <p>Atendemos repidamente cualquier duda a través de nuestro buzón de recomendaciones</p>
+                </div>
+                <div class="service">
+                    <h3 class="n-service"><span class="number">2</span>Pagos Seguros</h3>
+                    <p>Tus pagos se realizaran de una manera segura sea la forma de pago que te convenga</p>
+                </div>
+                <div class="service">
+                    <h3 class="n-service"><span class="number">3</span>Boletos Digitales</h3>
+                    <p>Tus boletos digitiales con QR único llegaran directamente a tu buzón de correo no lo compartas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 <footer th:replace="~{layout/footer :: footer}"></footer>
 </body>
 </html>
