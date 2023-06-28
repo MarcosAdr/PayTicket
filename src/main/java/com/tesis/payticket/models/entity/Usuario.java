@@ -1,6 +1,7 @@
 package com.tesis.payticket.models.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,16 +19,20 @@ public class Usuario implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(length = 30)
+
     private String username;
 
+    @NotEmpty
     private String nombre;
 
+    @NotEmpty
     private String apellido;
 
-    @Column(unique = true)
+    @NotEmpty
+    /*@Column(unique = true)*/
     private String email;
 
+    @NotEmpty
     @Column(length = 60)
     private String password;
 

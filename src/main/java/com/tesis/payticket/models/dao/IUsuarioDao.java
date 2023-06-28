@@ -9,4 +9,5 @@ public interface IUsuarioDao extends CrudRepository<Usuario, Long>{
 
     public Usuario findByEmail(String email);
 
+
 }

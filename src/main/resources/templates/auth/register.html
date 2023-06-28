@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/head :: head}"></head>
+<body>
+<header th:replace="~{layout/header :: header}"></header>
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row border rounded-5 g-5 justify-content-evenly bg-white">
+        <div class="col-md-12">
+            <h2 class="text-center">Registro</h2>
+            <div class="h-100">
+                <form th:action="@{/register}" th:object="${usuario}" method="POST">
+
+                    <div class="row g-2">
+                        <div class="col-md">
+
+                            <label><i class="bi bi-person-fill"></i> Nombre</label>
+                            <input type="text" class="form-control" th:field="*{nombre}" >
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+                                   th:errors="*{nombre}"></small>
+                        </div>
+                        <div class="col-md">
+                            <label><i class="bi bi-person-fill"></i> Apellido</label>
+                            <input type="text"  class="form-control" th:field="*{apellido}">
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"
+                                   th:errors="*{apellido}"></small>
+
+                        </div>
+                    </div>
+                    <div class="form-group py-2">
+                        <label><i class="bi bi-envelope-at-fill"></i> Correo</label>
+                        <input type="email" th:field="*{email}" class="form-control" placeholder="ej: marcoslobato98@gmail.com">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}"
+                               th:errors="*{email}"></small>
+                    </div>
+
+                    <div class="form-group py-2 ">
+                        <label><i class="bi bi-shield-lock-fill"></i> Contraseña</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('password')}"
+                               th:errors="*{password}"></small>
+                    </div>
+                    <div class="row py-2">
+                        <small>¿Ya tienes una cuenta? <a th:href="@{/login}">Iniciar Sesión</a></small>
+                    </div>
+                    <div class="text-center py-2">
+                        <input type="submit" class="btn btn-localidad" value="Registrar"></input>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+</body>
+</html>

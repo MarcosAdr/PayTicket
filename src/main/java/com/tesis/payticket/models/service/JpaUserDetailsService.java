@@ -31,7 +31,7 @@ public class JpaUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Usuario usuario= usuarioDao.findByEmail(email);
         if(usuario == null){
-            logger.error("Error de incicio de sesión: noe xiste el usuario con el correo '"+email+"'");
+            logger.error("Error de incicio de sesión: no existe el usuario con el correo '"+email+"'");
             throw new UsernameNotFoundException("Error de inicio de sesión: no existe el usuario con el correo '"+email+"'");
         }
 
@@ -49,6 +49,5 @@ public class JpaUserDetailsService implements UserDetailsService {
         return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEnabled(), true, true, true, roles);
 
     }
-
 
 }

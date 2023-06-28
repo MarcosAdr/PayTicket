@@ -41,7 +41,7 @@
         <div class="d-flex align-items-center order-lg-last">
             <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="text-white px-3">Iniciar Sesión</a>
             <a sec:authorize="!isAuthenticated()"
-               href="#signup"
+               th:href="@{/register}"
                class="text-white text-decoration-none px-3 py-1 rounded-4"
                style="background-color:#5b77b9"
             >Registrarse</a>

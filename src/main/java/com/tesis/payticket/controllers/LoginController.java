@@ -26,7 +26,7 @@ public class LoginController {
             model.addAttribute("success", "Ha cerrado sesión con éxito!");
             return "redirect:/";
         }
-        return "login";
+        return "auth/login";
     }
 
 
