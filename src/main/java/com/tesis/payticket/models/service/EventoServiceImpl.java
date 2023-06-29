@@ -46,4 +46,11 @@ public class EventoServiceImpl implements IEventoService {
     public void saveLocalidad(Localidad localidad) {
         localidadDao.save(localidad);
     }
+
+/*    @Override // revisar
+    @Transactional(readOnly = true)
+    public List<Evento> searchEvento(String nombre) {
+        List<Evento> eventos = eventoDao.findByNombreContainingIgnoreCase(nombre);
+        return eventos;
+    }*/
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "tipo_evento")
-public class TipoEvento implements Serializable {
+public class TipoEvento  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

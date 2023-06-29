@@ -6,6 +6,7 @@ import com.tesis.payticket.models.entity.Localidad;
 import java.util.List;
 
 public interface IEventoService {
+
     public List<Evento> findAll();
 
     public void save(Evento evento);
@@ -15,6 +16,8 @@ public interface IEventoService {
     public void delete(Long id);
 
     public void saveLocalidad(Localidad localidad);
+
+/*    public List<Evento> searchEvento(String nombre); //revisar  */
 
 
 }

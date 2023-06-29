@@ -223,4 +223,11 @@ public class EventoController {
         return "redirect:/evento/listar";
     }
 
+   /* @GetMapping(value = "/searchEvent") //mal funcionamiento
+    public ResponseEntity<List<Evento>> searchEvent(@RequestParam("search") String search) {
+        List<Evento> eventos = eventoService.searchEvento(search);
+        return ResponseEntity.ok(eventos);
+    }
+*/
+
 }
