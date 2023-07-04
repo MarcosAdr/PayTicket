@@ -1,7 +1,6 @@
 package com.tesis.payticket.controllers;
 
 
-import com.tesis.payticket.models.entity.Evento;
 import com.tesis.payticket.models.entity.TipoEvento;
 import com.tesis.payticket.models.service.ITipoEventoService;
 import jakarta.validation.Valid;
@@ -16,9 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
 
 @Controller
 @RequestMapping("/tipoEvento")

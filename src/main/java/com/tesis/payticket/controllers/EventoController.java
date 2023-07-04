@@ -1,9 +1,11 @@
 package com.tesis.payticket.controllers;
 
 import com.tesis.payticket.models.entity.Evento;
+import com.tesis.payticket.models.entity.Localidad;
 import com.tesis.payticket.models.entity.TipoEvento;
 import com.tesis.payticket.models.entity.Ubicacion;
 import com.tesis.payticket.models.service.IEventoService;
+import com.tesis.payticket.models.service.ILocalidadService;
 import com.tesis.payticket.models.service.ITipoEventoService;
 import com.tesis.payticket.models.service.IUbicacionService;
 import com.tesis.payticket.models.service.IUploadFileService;
@@ -45,6 +47,8 @@ public class EventoController {
     @Autowired
     private IUploadFileService uploadFileService;
 
+    @Autowired
+    private ILocalidadService localidadService;
 
     @GetMapping(value = "/uploads/{filename:.+}")
     public ResponseEntity<Resource> verMedia(@PathVariable String filename) {
@@ -64,6 +68,7 @@ public class EventoController {
     public String ver(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 
         Evento evento = eventoService.findOne(id);
+
         if (evento == null) {
             flash.addFlashAttribute("error", "El evento no existe en la base de datos");
             return "redirect:/evento/listar";
@@ -71,6 +76,7 @@ public class EventoController {
 
         model.put("evento", evento);
         model.put("tipoEvento", evento.getTipoEvento());
+    /*     model.put("localidades", localidades); */
         model.put("titulo", "Detalle del evento");
         return "evento/ver";
     }
@@ -94,8 +100,7 @@ public class EventoController {
 
     @RequestMapping(value = "/form/{id}")
     public String editar(@PathVariable(value = "id") Long id,
-                         Map<String, Object> model, RedirectAttributes flash
-                        ) {
+            Map<String, Object> model, RedirectAttributes flash) {
 
         Evento evento = null;
         List<TipoEvento> tiposEvento = tipoEventoService.findAll();
@@ -125,10 +130,10 @@ public class EventoController {
 
     @RequestMapping(value = "/form", method = RequestMethod.POST) // mayor precision place_id
     public String guardar(@Valid Evento evento, BindingResult result, Model model,
-                          @RequestParam("file") MultipartFile media,
-                          @RequestParam("direccion") String direccion,
-                          RedirectAttributes flash,
-                          SessionStatus status) {
+            @RequestParam("file") MultipartFile media,
+            @RequestParam("direccion") String direccion,
+            RedirectAttributes flash,
+            SessionStatus status) {
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Crear Evento");
             List<TipoEvento> tiposEvento = tipoEventoService.findAll();
@@ -139,9 +144,9 @@ public class EventoController {
         TipoEvento tipoEvento = tipoEventoService.findOne(evento.getTipoEvento().getId());
         evento.setTipoEvento(tipoEvento);
 
-
         if (!media.isEmpty()) {
-            if (evento.getId() != null && evento.getId() > 0 && evento.getMedia() != null && evento.getMedia().length() > 0) {
+            if (evento.getId() != null && evento.getId() > 0 && evento.getMedia() != null
+                    && evento.getMedia().length() > 0) {
 
                 uploadFileService.delete(evento.getMedia());
             }
@@ -194,12 +199,11 @@ public class EventoController {
             ubicacion.setNombre(direccion);
         }
 
-
         evento.setUbicacion(ubicacion);
 
         ubicacionService.save(ubicacion);
         eventoService.save(evento);
-        /*Verificar mensaje*/
+        /* Verificar mensaje */
         String mensajeFlash = (evento.getId() == null) ? "Evento editado con éxito!" : "Evento creado con exito";
         flash.addFlashAttribute("success", mensajeFlash);
         status.setComplete();
@@ -223,11 +227,13 @@ public class EventoController {
         return "redirect:/evento/listar";
     }
 
-   /* @GetMapping(value = "/searchEvent") //mal funcionamiento
-    public ResponseEntity<List<Evento>> searchEvent(@RequestParam("search") String search) {
-        List<Evento> eventos = eventoService.searchEvento(search);
-        return ResponseEntity.ok(eventos);
-    }
-*/
+    /*
+     * @GetMapping(value = "/searchEvent") //mal funcionamiento
+     * public ResponseEntity<List<Evento>> searchEvent(@RequestParam("search")
+     * String search) {
+     * List<Evento> eventos = eventoService.searchEvento(search);
+     * return ResponseEntity.ok(eventos);
+     * }
+     */
 
 }

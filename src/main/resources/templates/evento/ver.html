@@ -1,66 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{layout/head :: head}"></head>
-<body>
-<head th:replace="~{layout/header :: header}"></head>
-<div class="text-center">
-    <h1 class="text-white" th:text="${titulo}"></h1>
-</div>
-<div class="row g-5 justify-content-evenly">
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="row g-0">
-                <div class="col-6 col-md-5">
-                    <img th:if="${#strings.length(evento.media) > 0}" class="card-img img-fluid rounded-start"
-                         alt="img"
-                         th:src="@{'/evento/uploads/' + ${evento.media}}"
-                         th:alt="${evento.media}"/>
-                </div>
-                <div class="col-6 col-md-7">
-                    <div class="card-body d-flex flex-column">
-                        <div class="h-100">
-                            <h3 class="card-title">Evento <span th:text="${evento.tipoEvento.nombre}"></span></h3>
-                            <h2 class="card-title"><span th:text="${evento.nombre}"></span></h2>
-                            <p class="card-text">
-                                <span th:text="${evento.descripcion}"></span>
-                            </p>
-                            <h5 class="card-title mb-3">
-                                <i class="bi bi-geo-alt"></i>
-                                <strong>
-                                        <span th:if="${evento.ubicacion != null}"
-                                              th:text="${evento.ubicacion.nombre}"></span>
-                                    <span th:unless="${evento.ubicacion != null}"> No hay ubicación asignada</span>
-                                </strong>
-                            </h5>
 
-                            <h5 class="card-title mb-3"><i class="bi bi-alarm"></i>
-                                <strong> <span th:text="${evento.horaInicio}"></span></strong>
-                            </h5>
-                            <h5 class="card-title mb-3"><i class="bi bi-calendar-event"></i>
-                                <strong> <span th:text="${evento.fechaEvento}"></span></strong>
-                            </h5>
-                            <!--<h5 class="card-title mb-3" th:if="${evento.totalEntradas >0}"><i
+<head th:replace="~{layout/head :: head}"></head>
+
+<body>
+
+    <head th:replace="~{layout/header :: header}"></head>
+    <div class="text-center">
+        <h1 class="text-white" th:text="${titulo}"></h1>
+    </div>
+    <div class="row g-5 justify-content-evenly">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-6 col-md-5">
+                        <img th:if="${#strings.length(evento.media) > 0}" class="card-img img-fluid rounded-start"
+                            alt="img" th:src="@{'/evento/uploads/' + ${evento.media}}" th:alt="${evento.media}" />
+                    </div>
+                    <div class="col-6 col-md-7">
+                        <div class="card-body d-flex flex-column">
+                            <div class="h-100">
+                                <h3 class="card-title">Evento <span th:text="${evento.tipoEvento.nombre}"></span></h3>
+                                <h2 class="card-title"><span th:text="${evento.nombre}"></span></h2>
+                                <p class="card-text">
+                                    <span th:text="${evento.descripcion}"></span>
+                                </p>
+                                <h5 class="card-title mb-3">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <strong>
+                                        <span th:if="${evento.ubicacion != null}"
+                                            th:text="${evento.ubicacion.nombre}"></span>
+                                        <span th:unless="${evento.ubicacion != null}"> No hay ubicación asignada</span>
+                                    </strong>
+                                </h5>
+
+                                <h5 class="card-title mb-3"><i class="bi bi-alarm"></i>
+                                    <strong> <span th:text="${evento.horaInicio}"></span></strong>
+                                </h5>
+                                <h5 class="card-title mb-3"><i class="bi bi-calendar-event"></i>
+                                    <strong> <span th:text="${evento.fechaEvento}"></span></strong>
+                                </h5>
+                                <!--<h5 class="card-title mb-3" th:if="${evento.totalEntradas >0}"><i
                                     class="bi bi-ticket-perforated"></i>
                                 <strong> <span th:text="${evento.totalEntradas}"></span></strong>
                             </h5>-->
-                            <h5 class="card-title mb-3" th:if="${evento.totalEntradas > 0}">
-                                <i class="bi bi-ticket-perforated"></i>
-                                <strong><span th:text="${evento.totalEntradas}"></span></strong>
-                                <span> Entradas disponibles</span>
-                            </h5>
-                            <h5 sec:authorize="hasRole('ROLE_ADMIN')" class="card-title mb-3" th:unless="${evento.totalEntradas > 0}">
-                                <i class="bi bi-ticket-perforated"></i>
-                                <strong><span>0</span></strong>
-                                <span> Entradas disponibles</span>
-                            </h5>
+                                <h5 class="card-title mb-3" th:if="${evento.totalEntradas > 0}">
+                                    <i class="bi bi-ticket-perforated"></i>
+                                    <strong><span th:text="${evento.totalEntradas}"></span></strong>
+                                    <span> Entradas disponibles</span>
+                                </h5>
+                                <h5 sec:authorize="hasRole('ROLE_ADMIN')" class="card-title mb-3"
+                                    th:unless="${evento.totalEntradas > 0}">
+                                    <i class="bi bi-ticket-perforated"></i>
+                                    <strong><span>0</span></strong>
+                                    <span> Entradas disponibles</span>
+                                </h5>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row g-0">
-                   <div sec:authorize="hasRole('ROLE_ADMIN')" class="d-flex flex-column flex-sm-column align-items-center py-2">
+                <div class="row g-0">
+                    <div sec:authorize="hasRole('ROLE_ADMIN')"
+                        class="d-flex flex-column flex-sm-column align-items-center py-2">
                         <div th:if="${evento.totalEntradas > 0}">
-                            <a  class="btn btn-localidad" th:href="@{'/localidad/form/' + ${evento.id}}">Añadir
+                            <a class="btn btn-localidad" th:href="@{'/localidad/form/' + ${evento.id}}">Añadir
                                 Localidad</a>
                         </div>
                         <div th:if="${evento.totalEntradas == 0}">
@@ -71,44 +74,123 @@
                         <table class="table table-hover table-sm">
 
                             <thead class="text-center">
-                            <tr>
-                                <th>Localidad</th>
-                                <th>N° Entradas</th>
-                                <th>Valor</th>
-                                <th></th>
-                            </tr>
+                                <tr>
+                                    <th>Localidad</th>
+                                    <th>N° Entradas</th>
+                                    <th>Valor</th>
+                                    <th></th>
+                                </tr>
                             </thead>
                             <tbody class="table-hover table-group-divider text-center">
-                            <tr th:each="localidad: ${evento.localidades}">
-                                <td th:text="${localidad.nombre}"></td>
-                                <td th:text="${localidad.entradas}"></td>
-                                <td th:text="'c/u $'+${localidad.precio.precio}"></td>
-                                <td>
-                                    <a th:href="@{${'/localidad/form/'+localidad.evento.id+'/'+localidad.id}}"
-                                       class="btn btn-green btn-round btn-sm"><i
-                                            class="bi bi-pencil-square"></i></a>
-                                    <a th:href="@{${'/localidad/eliminar/'+localidad.evento.id+'/'+localidad.id}}"
-                                       class="btn btn-red btn-round btn-sm"
-                                       onclick="return confirm('Estás seguro de eliminar la localidad');"
-                                    ><i class="bi bi-trash"></i></a>
-                                </td>
-                            </tr>
+                                <tr th:each="localidad: ${evento.localidades}">
+                                    <td th:text="${localidad.nombre}"></td>
+                                    <td th:text="${localidad.entradas}"></td>
+                                    <td th:text="'c/u $'+${localidad.precio.precio}"></td>
+                                    <td>
+                                        <a th:href="@{${'/localidad/form/'+localidad.evento.id+'/'+localidad.id}}"
+                                            class="btn btn-green btn-round btn-sm"><i
+                                                class="bi bi-pencil-square"></i></a>
+                                        <a th:href="@{${'/localidad/eliminar/'+localidad.evento.id+'/'+localidad.id}}"
+                                            class="btn btn-red btn-round btn-sm"
+                                            onclick="return confirm('Estás seguro de eliminar la localidad');"><i
+                                                class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
                             </tbody>
 
                         </table>
                     </div>
 
-                <div sec:authorize="hasRole('ROLE_ADMIN')" class="d-flex flex-column flex-sm-column align-items-center py-2">
-                    <a class="btn btn-localidad" th:href="@{/evento/listar}">Salir</a>
-                </div>
-                <div class="d-flex flex-column flex-sm-column align-items-center py-2">
-                    <a class="btn btn-localidad" th:href="@{/}">Comprar ahora <i class="bi bi-ticket-perforated-fill"></i></a>
-                </div>
+                    <div sec:authorize="hasRole('ROLE_ADMIN')"
+                        class="d-flex flex-column flex-sm-column align-items-center py-2">
+                        <a class="btn btn-localidad" th:href="@{/evento/listar}">Salir</a>
+                    </div>
+                    <div class="d-flex flex-column flex-sm-column align-items-center py-2">
+                        <a class="btn btn-localidad" data-bs-toggle="modal" data-bs-target="#modalCompra">Comprar ahora
+                            <i class="bi bi-ticket-perforated-fill"></i></a>
+                    </div>
+                    <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalCompraLabel">Compra de boletos</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Cerrar"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="row g-2">
+                                            <label for="localidad" class="form-label text-center">Seleccione una
+                                                localidad</label>
+                                            <div class="col-md">
+                                                <select class="form-select" id="localidad" name="localidad"
+                                                    onchange="mostrarPrecio()">
+                                                    <option th:each="localidad : ${evento.localidades}"
+                                                        th:value="${localidad.id}" th:text="${localidad.nombre}"
+                                                        th:data-precio="${localidad.precio.precio}"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md">
+                                                <div id="precioContainer" class=" text-center mb-3"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="col-md py-2">
+                                                <label for="cantidad" class="form-label">Cantidad</label>
+                                                <input type="number" class="form-control" id="cantidad" name="cantidad"
+                                                    min="1" value="1" onchange="calcularTotal()">
+                                            </div>
 
+                                        </div>
+                                        <script>
+                                            function mostrarPrecio() {
+                                                var select = document.getElementById("localidad");
+                                                var selectedOption = select.options[select.selectedIndex];
+                                                var precio = parseFloat(selectedOption.getAttribute("data-precio"));
+                                                var precioFormatted = precio.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+                                                var precioContainer = document.getElementById("precioContainer");
+                                                precioContainer.innerHTML = '<p><strong>Precio: <i class="bi bi-currency-dollar"></i></strong>' + precioFormatted + '</p>';
+                                                // Restablecer el valor del campo de cantidad a 1
+                                                document.getElementById("cantidad").value = 1;
+
+                                                // Calcular el total y mostrarlo
+                                                calcularTotal();
+                                            }
+                                        </script>
+                                        <div id="totalContainer" class="mb-3 text-center"></div>
+                                        <script>
+                                            function calcularTotal() {
+                                                var select = document.getElementById("localidad");
+                                                var selectedOption = select.options[select.selectedIndex];
+                                                var precio = parseFloat(selectedOption.getAttribute("data-precio"));
+                                                var cantidad = parseInt(document.getElementById("cantidad").value);
+
+                                                var total = precio * cantidad;
+                                                var totalFormatted = total.toFixed(2).replace(".", ",");
+
+                                                var totalContainer = document.getElementById("totalContainer");                                     
+                                         
+                                                totalContainer.innerHTML = '<h2><strong>Total: <i class="bi bi-currency-dollar"></i>' + totalFormatted + '</strong></h2>';
+                                            }
+                                        </script>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-localidad">Pagar <i id="btnPagar"
+                                                    class="bi bi-currency-dollar"></i></button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
-<footer th:replace="~{layout/footer :: footer}"></footer>
+    <footer th:replace="~{layout/footer :: footer}"></footer>
 </body>
+
 </html>

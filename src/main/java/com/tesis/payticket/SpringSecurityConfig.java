@@ -38,8 +38,7 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests((authz) -> {
                     try {
                         authz
-                                .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/index","/register","/evento/ver/**").permitAll()
-                                .requestMatchers("/uploads/**").hasAnyRole("USER")
+                                .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/index","/register","/evento/ver/**","/uploads").permitAll()
                                 .requestMatchers("/localidad/**").hasRole("ADMIN")
                                 .requestMatchers("/evento/form/**").hasRole("ADMIN")
                                 .anyRequest().authenticated();

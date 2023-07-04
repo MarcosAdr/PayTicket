@@ -19,9 +19,8 @@ public class Precio {
 
     @NotNull
     private float precio;
+
     @OneToOne(mappedBy = "precio", fetch = FetchType.LAZY)
     private Localidad localidad;
-
-
 
 }
