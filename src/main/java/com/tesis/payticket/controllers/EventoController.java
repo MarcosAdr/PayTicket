@@ -1,7 +1,6 @@
 package com.tesis.payticket.controllers;
 
 import com.tesis.payticket.models.entity.Evento;
-import com.tesis.payticket.models.entity.Localidad;
 import com.tesis.payticket.models.entity.TipoEvento;
 import com.tesis.payticket.models.entity.Ubicacion;
 import com.tesis.payticket.models.service.IEventoService;
@@ -46,9 +45,6 @@ public class EventoController {
 
     @Autowired
     private IUploadFileService uploadFileService;
-
-    @Autowired
-    private ILocalidadService localidadService;
 
     @GetMapping(value = "/uploads/{filename:.+}")
     public ResponseEntity<Resource> verMedia(@PathVariable String filename) {

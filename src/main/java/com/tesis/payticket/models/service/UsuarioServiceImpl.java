@@ -1,7 +1,6 @@
 package com.tesis.payticket.models.service;
 
 import com.tesis.payticket.models.dao.IUsuarioDao;
-import com.tesis.payticket.models.entity.Role;
 import com.tesis.payticket.models.entity.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
