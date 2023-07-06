@@ -167,6 +167,7 @@
                                                 var precio = parseFloat(selectedOption.getAttribute("data-precio"));
                                                 var cantidad = parseInt(document.getElementById("cantidad").value);
 
+                                                var eventoId = [[${evento.id}]];
                                                 var total = precio * cantidad;
                                                 var totalFormatted = total.toFixed(2).replace(".", ",");
 
@@ -174,7 +175,9 @@
                                          
                                                 totalContainer.innerHTML = '<h2><strong>Total: <i class="bi bi-currency-dollar"></i>' + totalFormatted + '</strong></h2>';
                                                 document.getElementById("btnPagar").addEventListener("click", function () {
-                                                window.location.href = "/checkouts?total=" + total;
+
+                                                    window.location.href = "/checkouts?eventoId=" + eventoId + "&cantidad=" + cantidad + "&total=" + total;
+
                                             });
                                             }
                                         </script>

@@ -42,5 +42,6 @@ public class Usuario  {
     @JoinColumn(name = "usuario_id")
     private List<Role> roles;
 
-
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Compra> compras;
 }

@@ -41,6 +41,7 @@ public class EventoServiceImpl implements IEventoService {
     public void delete(Long id) {
         eventoDao.deleteById(id);
     }
+
     @Override
     @Transactional
     public void saveLocalidad(Localidad localidad) {
