@@ -39,9 +39,10 @@ public class PaymentController {
     };
 
     @RequestMapping(value ="/checkouts", method = RequestMethod.GET)
-    public String checkout(Model model) {
+    public String checkout(Model model, @RequestParam("total") float total) {
         String clientToken = paymentService.getToken();
         model.addAttribute("clientToken", clientToken);        
+        model.addAttribute("total", total);
         return "checkouts/new";
     }
 
