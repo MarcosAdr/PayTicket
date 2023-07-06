@@ -173,10 +173,13 @@
                                                 var totalContainer = document.getElementById("totalContainer");                                     
                                          
                                                 totalContainer.innerHTML = '<h2><strong>Total: <i class="bi bi-currency-dollar"></i>' + totalFormatted + '</strong></h2>';
+                                                document.getElementById("btnPagar").addEventListener("click", function () {
+                                                window.location.href = "/checkouts?total=" + total;
+                                            });
                                             }
                                         </script>
                                         <div class="text-center">
-                                            <a type="submit" class="btn btn-localidad" th:href="@{/checkouts}">Pagar <i id="btnPagar"
+                                            <a type="button" class="btn btn-localidad" id="btnPagar">Pagar <i 
                                                     class="bi bi-currency-dollar"></i></a>
                                         </div>
 
