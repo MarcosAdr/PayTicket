@@ -4,7 +4,6 @@ import com.tesis.payticket.models.entity.Evento;
 import com.tesis.payticket.models.entity.TipoEvento;
 import com.tesis.payticket.models.entity.Ubicacion;
 import com.tesis.payticket.models.service.IEventoService;
-import com.tesis.payticket.models.service.ILocalidadService;
 import com.tesis.payticket.models.service.ITipoEventoService;
 import com.tesis.payticket.models.service.IUbicacionService;
 import com.tesis.payticket.models.service.IUploadFileService;

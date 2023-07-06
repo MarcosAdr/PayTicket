@@ -1,4 +1,4 @@
-package com.tesis.payticket;
+package com.tesis.payticket.config;
 
 import com.tesis.payticket.auth.handler.LoginSuccesHandler;
 import com.tesis.payticket.models.service.JpaUserDetailsService;
