@@ -14,7 +14,7 @@
       <div class="content slim">
         <div class="set">
           <div class="fill">
-            <a class="pseudoshop" href="/">PSEUDO<strong>SHOP</strong></a>
+            <a class="pseudoshop" href="/">Pay<strong>Ticket</strong></a>
           </div>
 
           <div class="fit">
@@ -34,18 +34,19 @@
     <div class="checkout container">
 
       <header>
-        <h1>Hi, <br />Let's test a transaction</h1>
+        <h1>Hola, <br />Paga con tu Tarjeta de Crédito</h1>
         <p>
-          Make a test payment with Braintree using PayPal or a card
+          Realiza el pago en Braintree utilizando tu tarjeta
         </p>
       </header>
 
       <form id="payment-form" method="post" th:action="@{/checkouts}">
         <section>
           <label for="amount">
-            <span class="input-label">Amount</span>
+            <span class="input-label">Valor a pagar</span>
             <div class="input-wrapper amount-wrapper">
-              <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" th:value="${total}" />
+              <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" th:value="${total}" disabled/>
+              <input type="hidden" name="pago" th:value="${total}">
             </div>
           </label>
 
@@ -55,7 +56,7 @@
         </section>
 
         <input type="hidden" id="nonce" name="payment_method_nonce" />
-        <button class="button" type="submit"><span>Test Transaction</span></button>
+        <button class="button" type="submit"><span>Realizar Pago</span></button>
       </form>
     </div>
   </div>

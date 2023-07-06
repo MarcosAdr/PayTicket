@@ -9,7 +9,7 @@ INSERT INTO evento (fecha_evento, hora_fin, hora_inicio, date_created, last_upda
 
 INSERT INTO precio(precio) VALUES (5);
 INSERT INTO precio(precio) VALUES (3);
-INSERT INTO precio(precio) VALUES (10);
+INSERT INTO precio(precio) VALUES (2.5);
 INSERT INTO precio(precio) VALUES (10);
 
 INSERT INTO localidad(nombre, descripcion, entradas, evento_id ,precio_id) VALUES('General', 'Público en general', 50,1,1);

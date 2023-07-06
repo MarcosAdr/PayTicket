@@ -47,7 +47,7 @@ public class PaymentController {
     }
 
     @RequestMapping(value = "/checkouts", method = RequestMethod.POST)
-    public String postForm(@RequestParam("amount") String amount, @RequestParam("payment_method_nonce") String nonce, Model model, final RedirectAttributes redirectAttributes) {
+    public String postForm(@RequestParam("pago") String amount, @RequestParam("payment_method_nonce") String nonce, Model model, final RedirectAttributes redirectAttributes) {
 
         BigDecimal decimalAmount;
         try {

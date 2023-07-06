@@ -16,7 +16,7 @@ xmlns:java="java.text.SimpleDateFormat">
       <div class="content slim">
         <div class="set">
           <div class="fill">
-            <a class="pseudoshop" href="/">PSEUDO<strong>SHOP</strong></a>
+            <a class="pseudoshop" href="/">Pay<strong>Ticket</strong></a>
           </div>
 
           <div class="fit">
@@ -36,8 +36,8 @@ xmlns:java="java.text.SimpleDateFormat">
         </div>
 
         <div th:if="${isSuccess}">
-          <h1>Sweet Success!</h1>
-          <section>Your test transaction has been successfully processed. See the Braintree API response and try again.</section>
+          <h1>Pago existoso!</h1>
+          <section>Su compra ha sido realizada exitosamente.</section>
         </div>
         <div th:unless="${isSuccess}">
           <h1>Transaction Failed</h1>
@@ -45,8 +45,8 @@ xmlns:java="java.text.SimpleDateFormat">
         </div>
 
         <section>
-          <a class="button primary back" href="/checkouts/new">
-            <span>Test Another Transaction</span>
+          <a class="button secondary full" href="/">
+            <span>Boleto Digital</span>
           </a>
         </section>
       </div>
@@ -172,15 +172,7 @@ xmlns:java="java.text.SimpleDateFormat">
         </table>
       </section>
 
-      <section>
-        <p class="center small">Integrate with the Braintree SDK for a secure and seamless checkout</p>
-      </section>
-
-      <section>
-        <a class="button secondary full" href="https://developers.braintreepayments.com/guides/drop-in" target="_blank">
-          <span>See the Docs</span>
-        </a>
-      </section>
+    
     </article>
   </aside>
 </body>
