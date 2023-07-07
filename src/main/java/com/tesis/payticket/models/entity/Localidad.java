@@ -5,6 +5,8 @@ import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -30,5 +32,8 @@ public class Localidad {
 
     @ManyToOne
     private Evento evento;
+
+    @OneToMany(mappedBy = "localidad")
+    private List<Compra> compras;
 
 }

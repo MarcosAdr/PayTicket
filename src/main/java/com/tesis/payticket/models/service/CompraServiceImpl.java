@@ -2,7 +2,6 @@ package com.tesis.payticket.models.service;
 
 import com.tesis.payticket.models.dao.ICompraDao;
 import com.tesis.payticket.models.entity.Compra;
-import com.tesis.payticket.models.entity.Evento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,12 @@ public class CompraServiceImpl implements ICompraService{
 
     @Override
     public void delete(Long id) {
-        compraDao.deleteById(id);
+        compraDao.deleteById(id);}
 
+    @Override
+    public List<Compra> findByUsuarioId(Long id) {
+        return compraDao.findByUsuarioId(id);
     }
+
+
 }

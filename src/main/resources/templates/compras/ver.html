@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/head :: head}"></head>
+<body>
+<header th:replace="~{layout/header :: header}"></header>
+<div class="container py-4">
+    <div class="row g-12 justify-content-evenly">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body d-flex flex-column">
+
+
+                    <div class="h-100">
+                        <h1>Mis compras</h1>
+                        <table class="table table-striped rounded-5">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>N° Transacción</th>
+                                <th>Fecha</th>
+                                <th>Evento</th>
+                                <th>Localidad</th>
+                                <th>Valor Unitario</th>
+                                <th>Cantidad</th>
+                                <th>Valor Total</th>
+                                <th>Ticket</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table table-group-divider">
+                            <tr th:each="compra, compraStat: ${compras}">
+                                <td th:text="${compraStat.count}"></td>
+                                <td th:text="${compra.idTransaccion}"></td>
+                                <td th:text="${compra.fechaTransaccion}"></td>
+                                <td th:text="${compra.localidad.evento.nombre}"></td>
+                                <td th:text="${compra.localidad.nombre}"></td>
+                                <td th:text="${compra.localidad.precio.precio}"></td>
+                                <td th:text="${compra.cantidad}"></td>
+                                <td th:text="${compra.monto}"></td>
+                                <td>
+                                    <a th:href="@{/compras/ver}" class="btn btn-primary">Ver</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</body>
+</html>

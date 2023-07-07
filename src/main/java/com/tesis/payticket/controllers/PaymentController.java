@@ -5,10 +5,9 @@ import java.util.Arrays;
 
 import com.tesis.payticket.models.entity.Compra;
 import com.tesis.payticket.models.entity.Evento;
+import com.tesis.payticket.models.entity.Localidad;
 import com.tesis.payticket.models.entity.Usuario;
-import com.tesis.payticket.models.service.ICompraService;
-import com.tesis.payticket.models.service.IEventoService;
-import com.tesis.payticket.models.service.IUsuarioService;
+import com.tesis.payticket.models.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,7 +26,6 @@ import com.braintreegateway.Transaction;
 import com.braintreegateway.TransactionRequest;
 import com.braintreegateway.ValidationError;
 import com.braintreegateway.Transaction.Status;
-import com.tesis.payticket.models.service.PaymentService;
 
 
 @Controller
@@ -45,6 +43,9 @@ public class PaymentController {
     @Autowired
     ICompraService compraService;
 
+    @Autowired
+    ILocalidadService localidadService;
+
     private final Status[] TRANSACTION_SUCCESS_STATUSES = new Status[]{
             Transaction.Status.AUTHORIZED,
             Transaction.Status.AUTHORIZING,
@@ -57,18 +58,21 @@ public class PaymentController {
 
     @RequestMapping(value = "/checkouts", method = RequestMethod.GET)
     public String checkout(Model model, @RequestParam("total") float total,
-                           @RequestParam("eventoId") Long idEvento
+                           @RequestParam("localidadId") Long idLocalidad,
+                           @RequestParam("cantidad") int cantidad
                            ) {
         String clientToken = paymentService.getToken();
         model.addAttribute("clientToken", clientToken);
         model.addAttribute("total", total);
-        model.addAttribute("eventoId", idEvento);
+        model.addAttribute("localidadId", idLocalidad);
+        model.addAttribute("cantidad", cantidad);
         return "checkouts/new";
     }
 
     @RequestMapping(value = "/checkouts", method = RequestMethod.POST)
     public String postForm(@RequestParam("pago") String amount, @RequestParam("payment_method_nonce") String nonce, Model model,
-                           @RequestParam("eventoId") Long idEvento,
+                           @RequestParam("localidadId") Long idLocalidad,
+                           @RequestParam("cantidad") int cantidad,
                            final RedirectAttributes redirectAttributes) {
 
         BigDecimal decimalAmount;
@@ -96,14 +100,18 @@ public class PaymentController {
 
             Usuario usuario = usuarioService.findByUsername(username);
 
-            Evento evento =  eventoService.findOne(idEvento);
+            Localidad localidad =  localidadService.findOne(idLocalidad);
 
             if (Arrays.asList(TRANSACTION_SUCCESS_STATUSES).contains(transaction.getStatus())) {
                 Compra compra = new Compra();
                 compra.setIdTransaccion(transaction.getId());
                 compra.setUsuario(usuario);
                 compra.setMonto(transaction.getAmount().floatValue());
-                compra.setEvento(evento);
+                compra.setLocalidad(localidad);
+                compra.setCardType(transaction.getCreditCard().getCardType());
+                compra.setFechaTransaccion(transaction.getCreatedAt().getTime());
+                compra.setLastN(transaction.getCreditCard().getLast4());
+                compra.setCantidad(cantidad);
                 compraService.save(compra);
 
             }

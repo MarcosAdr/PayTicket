@@ -1,7 +1,6 @@
 package com.tesis.payticket.models.service;
 
 import com.tesis.payticket.models.entity.Compra;
-import com.tesis.payticket.models.entity.Evento;
 
 import java.util.List;
 
@@ -14,5 +13,7 @@ public interface ICompraService {
     public Compra findOne(Long id);
 
     public void delete(Long id);
+
+    public List<Compra> findByUsuarioId(Long id);
 
 }

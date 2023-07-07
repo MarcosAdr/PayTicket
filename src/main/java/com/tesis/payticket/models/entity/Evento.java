@@ -63,10 +63,6 @@ public class Evento {
     @ManyToOne(cascade = CascadeType.ALL)
     private Ubicacion ubicacion;
 
-    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Compra> compras;
-
-
     @PrePersist
     public void prePersist() {
         dateCreated = new Date();

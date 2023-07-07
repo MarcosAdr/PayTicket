@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 @Getter
 @Setter
 @Entity
@@ -18,12 +21,20 @@ public class Compra {
 
     private float monto;
 
+    private int cantidad;
+
+    private String cardType;
+
+    private Date fechaTransaccion;
+
+    private String lastN;
+
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "evento_id")
-    private Evento evento;
+    @JoinColumn(name = "localidad_id")
+    private Localidad localidad;
 
 }
