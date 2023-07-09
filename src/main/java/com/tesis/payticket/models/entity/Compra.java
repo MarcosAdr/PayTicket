@@ -37,4 +37,9 @@ public class Compra {
     @JoinColumn(name = "localidad_id")
     private Localidad localidad;
 
+    @OneToOne
+    @JoinColumn(name = "boleto_id")
+    private Boleto boleto;
+
+
 }

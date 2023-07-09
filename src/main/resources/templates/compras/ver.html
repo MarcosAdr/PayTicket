@@ -4,15 +4,13 @@
 <body>
 <header th:replace="~{layout/header :: header}"></header>
 <div class="container py-4">
-    <div class="row g-12 justify-content-evenly">
-        <div class="col-md-6">
+    <div class="row g-2 justify-content-evenly">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body d-flex flex-column">
-
-
                     <div class="h-100">
                         <h1>Mis compras</h1>
-                        <table class="table table-striped rounded-5">
+                        <table class="table table-light table-hover rounded-5">
                             <thead>
                             <tr>
                                 <th>#</th>
@@ -37,10 +35,36 @@
                                 <td th:text="${compra.cantidad}"></td>
                                 <td th:text="${compra.monto}"></td>
                                 <td>
-                                    <a th:href="@{/compras/ver}" class="btn btn-primary">Ver</a></td>
+                                    <input type="hidden" class="compra-id" th:value="${compra.id}">
+                                    <a type="button" class="btn btn-success generar-ticket-btn">
+                                        Generar Ticket</a>
+                                </td>
+
                             </tr>
                             </tbody>
                         </table>
+                        <script>
+                            var generarTicketButtons = document.querySelectorAll('.btn.btn-primary');
+                            generarTicketButtons.forEach(function (button) {
+                                button.addEventListener('click', function () {
+                                    var compraId = this.parentNode.querySelector('.compra-id').value;
+                                    var url = '/compras/generar/' + compraId;
+                                    fetch(url, {
+                                        method: 'GET'
+                                    })
+                                        .then(function (response) {
+                                            if (response.ok) {
+                                                console.log('Ticket generado exitosamente');
+                                            } else {
+                                                console.log('Error al generar el ticket');
+                                            }
+                                        })
+                                        .catch(function (error) {
+                                            console.log('Error en la solicitud: ' + error.message);
+                                        });
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
@@ -49,5 +73,7 @@
     </div>
 </div>
 </div>
+
+
 </body>
 </html>
