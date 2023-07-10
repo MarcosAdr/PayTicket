@@ -4,6 +4,7 @@ import com.tesis.payticket.models.dao.ICompraDao;
 import com.tesis.payticket.models.entity.Compra;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,16 +16,19 @@ public class CompraServiceImpl implements ICompraService{
 
 
     @Override
+    @Transactional(readOnly = true)
     public List<Compra> findAll() {
         return (List<Compra>) compraDao.findAll();
     }
 
     @Override
+    @Transactional
     public void save(Compra compra) {
         compraDao.save(compra);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Compra findOne(Long id) {
         return compraDao.findById(id).orElse(null);
     }
@@ -34,6 +38,7 @@ public class CompraServiceImpl implements ICompraService{
         compraDao.deleteById(id);}
 
     @Override
+    @Transactional(readOnly = true)
     public List<Compra> findByUsuarioId(Long id) {
         return compraDao.findByUsuarioId(id);
     }

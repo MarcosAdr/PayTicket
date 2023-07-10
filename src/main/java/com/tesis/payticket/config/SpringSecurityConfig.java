@@ -12,10 +12,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 @Configuration
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SpringSecurityConfig {
+
 
     @Autowired
     private LoginSuccesHandler successHandler;
@@ -25,6 +30,9 @@ public class SpringSecurityConfig {
 
     @Autowired
     private JpaUserDetailsService userDetailService;
+
+    @Autowired
+    private ThymeleafViewResolver thymeleafViewResolver;
 
     @Autowired
     public void userDetailsService(AuthenticationManagerBuilder build) throws Exception {
@@ -69,5 +77,6 @@ public class SpringSecurityConfig {
 
         return authBuilder.build();
     }
+
 
 }

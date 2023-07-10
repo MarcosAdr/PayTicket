@@ -36,35 +36,28 @@
                                 <td th:text="${compra.monto}"></td>
                                 <td>
                                     <input type="hidden" class="compra-id" th:value="${compra.id}">
-                                    <a type="button" class="btn btn-success generar-ticket-btn">
-                                        Generar Ticket</a>
+                                    <a class="btn btn-success generar-ticket-btn">Generar Ticket</a>
+                                    <div class="modal-advertencia" style="display: none;">
+                                        <p class="text-danger">Al generar tu ticket no podrás generar otro. Verifica la
+                                            información de tu compra o ponte en contacto con servicio al cliente.
+                                            <small><a href="/">Inicio</a></small>
+                                        </p>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="checkboxAceptar"
+                                                   required>
+                                            <label class="form-check-label" for="checkboxAceptar">Aceptar términos y
+                                                condiciones</label>
+                                        </div>
+                                        <a class="btn btn-success btn-aceptar" disabled>Aceptar</a>
+                                    </div>
+
                                 </td>
 
                             </tr>
                             </tbody>
                         </table>
-                        <script>
-                            var generarTicketButtons = document.querySelectorAll('.btn.btn-primary');
-                            generarTicketButtons.forEach(function (button) {
-                                button.addEventListener('click', function () {
-                                    var compraId = this.parentNode.querySelector('.compra-id').value;
-                                    var url = '/compras/generar/' + compraId;
-                                    fetch(url, {
-                                        method: 'GET'
-                                    })
-                                        .then(function (response) {
-                                            if (response.ok) {
-                                                console.log('Ticket generado exitosamente');
-                                            } else {
-                                                console.log('Error al generar el ticket');
-                                            }
-                                        })
-                                        .catch(function (error) {
-                                            console.log('Error en la solicitud: ' + error.message);
-                                        });
-                                });
-                            });
-                        </script>
+
                     </div>
                 </div>
             </div>
@@ -73,7 +66,50 @@
     </div>
 </div>
 </div>
+<script>
+    var generarTicketButtons = document.querySelectorAll('.btn.btn-success');
 
+    generarTicketButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var compraId = this.parentNode.querySelector('.compra-id').value;
+            var url = '/compras/generar/' + compraId;
+
+            fetch(url, {
+                method: 'GET'
+            })
+                .then(function (response) {
+                    if (response.ok) {
+                        console.log('Ticket generado exitosamente');
+                    } else {
+                        console.log('Error al generar el ticket');
+                    }
+                })
+                .catch(function (error) {
+                    console.log('Error en la solicitud: ' + error.message);
+                });
+
+            // Mostrar el modal de advertencia
+            var modalAdvertencia = this.parentNode.querySelector('.modal-advertencia');
+            modalAdvertencia.style.display = 'block';
+
+            // Ocultar el botón "Generar Ticket"
+            this.style.display = 'none';
+
+            // Obtener el checkbox de aceptación y el botón "Aceptar" del modal
+            var checkboxAceptar = modalAdvertencia.querySelector('#checkboxAceptar');
+            var enlaceAceptar = modalAdvertencia.querySelector('.btn-aceptar');
+
+            // Generar el enlace "/boleto/"+compraId
+            enlaceAceptar.href = '/boleto/' + compraId;
+
+            // Agregar evento de cambio al checkbox
+            checkboxAceptar.addEventListener('change', function () {
+                // Habilitar o deshabilitar el enlace "Aceptar" según el estado del checkbox
+                enlaceAceptar.disabled = !this.checked;
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

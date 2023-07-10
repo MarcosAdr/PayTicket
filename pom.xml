@@ -89,6 +89,15 @@
             <artifactId>zxing-spring-boot-starter</artifactId>
             <version>2.0.0.RELEASE</version>
         </dependency>
+        <!-- Para la generación de PDF -->
+
+
+        <!-- Para convertir HTML a PDF -->
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-pdf</artifactId>
+            <version>9.1.22</version>
+        </dependency>
 
     </dependencies>
     <build>

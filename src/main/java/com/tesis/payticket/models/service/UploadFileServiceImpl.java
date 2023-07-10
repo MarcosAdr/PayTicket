@@ -32,7 +32,7 @@ public class UploadFileServiceImpl implements IUploadFileService {
         Resource recurso = new UrlResource(pathMedia.toUri());
 
         if (!recurso.exists() || !recurso.isReadable()) {
-            throw new RuntimeException("Error: no se puede cargar el Post publicitario: " + pathMedia);
+            throw new RuntimeException("Error: no se puede cargar la imagen: " + pathMedia);
         }
         return recurso;
     }

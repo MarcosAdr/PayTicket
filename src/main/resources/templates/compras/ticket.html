@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Ticket</title>
 </head>
 <body>
-<h1>Ticket generado</h1>
-<p>Aquí está el código QR:</p>
-<div th:utext="${htmlContent}"></div>
+<strong><label>Boleto</label></strong>
+<h1 th:text="${boleto.id}"></h1>
+<strong><label>Compra</label></strong>
+<h3 th:text="${boleto.compra.id}"></h3>
+<strong><label>Nombre y apellido</label></strong>
+<h3 th:text="${boleto.compra.usuario.nombre}"></h3>
+<h3 th:text="${boleto.compra.usuario.apellido}"></h3>
+<img th:src="@{${'/images/QRCode/' + boleto.codigoQR}}" th:alt="${boleto.codigoQR}" />
+
 </body>
 </html>
+

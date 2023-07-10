@@ -4,7 +4,6 @@ import com.tesis.payticket.models.entity.Boleto;
 import com.tesis.payticket.models.entity.Compra;
 import com.tesis.payticket.models.service.IBoletoService;
 import com.tesis.payticket.models.service.ICompraService;
-import com.tesis.payticket.models.service.IUploadFileService;
 import com.tesis.payticket.models.service.IUsuarioService;
 import com.tesis.payticket.utils.QRCodeGenerator;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 
 import java.io.*;
@@ -38,7 +38,10 @@ public class CompraController {
     private IBoletoService boletoService;
 
     @Autowired
-    private IUploadFileService uploadFileService;
+    private BoletoController boletoController;
+
+    @Autowired
+    private SpringTemplateEngine templateEngine;
 
     private QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
 
@@ -56,7 +59,7 @@ public class CompraController {
     }
 
     @GetMapping("/generar/{compraId}")
-    public String generarBoleto(@PathVariable("compraId") String compraIdStr, Model model,
+    public void generarBoleto(@PathVariable("compraId") String compraIdStr, Model model,
                                 HttpServletResponse response
     ) {
         Long compraId = Long.parseLong(compraIdStr);
@@ -74,7 +77,7 @@ public class CompraController {
 
             ByteArrayOutputStream qrOutputStream = qrCodeGenerator.generarCodigoQR(qrContent, 200, 200);
 
-            String qrImageName = "qr_" + compra.getId() + compra.getLocalidad().getId() +
+            String qrImageName = "qr_" + compra.getIdTransaccion() + compra.getId() + compra.getLocalidad().getId() +
                     compra.getLocalidad().getEvento().getId() + compra.getCantidad() + ".png";
 
             qrCodeGenerator.guardarImagenQR(qrImageName, qrOutputStream.toByteArray());
@@ -82,15 +85,11 @@ public class CompraController {
             Boleto boleto = new Boleto();
             boleto.setCodigoQR(qrImageName);
             boletoService.save(boleto);
-
             compra.setBoleto(boleto);
 
             compraService.save(compra);
 
-        return "/compras/ticket";
-
-    }
-
+            }
 
 }
 
