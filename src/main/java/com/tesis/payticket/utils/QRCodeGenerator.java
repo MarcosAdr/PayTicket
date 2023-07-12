@@ -29,7 +29,7 @@ public class QRCodeGenerator {
     }
 
     public void guardarImagenQR(String nombreImagen, byte[] imagenBytes) {
-        try (OutputStream outputStream = new FileOutputStream("src/main/resources/pdf-resources/images/" + nombreImagen)) {
+        try (OutputStream outputStream = new FileOutputStream("src/main/resources/pdf-resources/images/ImageQR/" + nombreImagen)) {
             outputStream.write(imagenBytes);
         } catch (IOException e) {
               e.printStackTrace();

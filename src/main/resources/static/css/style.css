@@ -1,3 +1,6 @@
+body{
+    height: 100%;
+}
 /*Eventos*/
 .card-img{
     width: 100%;
@@ -67,6 +70,11 @@
 }
 /*--------------------------------------------*/
 /*INDEX*/
+.left-box-cot {
+    /*       background-color: #0a53be;*/
+    background: url("../images/background-leftbox-cot.jpg");
+    background-size: cover;
+}
 .contenedor {
     width: 90%;
     max-width: 1200px;
@@ -139,4 +147,89 @@
     background-color:#fff;
 
 }
+.btn-comprar{
+    background-color: #5b77b9;
+    color: #fff;
+}
 /*--------------------------------------------*/
+/*Footer*/
+footer{
+    background: #162132;
+    padding-bottom: 0.1px;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.contact-us{
+    text-align: left;
+    font-size: 100%;
+    color: #fff;
+
+}
+
+.brand{
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.brand+p{
+    font-weight: 500;
+
+}
+
+.social-media{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.social-media-icon{
+    display: inline-block;
+    margin-left: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    text-align: center;
+    color: #fff;
+}
+
+.social-media-icon:hover{
+    background: #fff;
+    color: #162132;
+
+}
+.social-media-icon i{
+    font-size: 30px;
+    line-height: 60px;
+}
+
+.line{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 2px;
+    background: #fff;
+    margin-bottom: 60px;
+
+}
+.line-section{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 2px;
+    background: #162132;
+    margin-bottom: 60px;
+
+}
+/*----------------------------------------------*/

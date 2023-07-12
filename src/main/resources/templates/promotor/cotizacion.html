@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/head :: head}"></head>
+<body>
+<header th:replace="~{layout/header :: header}"></header>
+<div class="text-center py-4">
+    <h1 class="text-white">¿Estás organizando un evento?</h1>
+</div>
+<!--Contenedor Principal-->
+<div class="container d-flex justify-content-center align-items-center">
+    <!--Contenedor Login-->
+    <div class="row border rounded-5 p-3 bg-white shadow box-area">
+        <!--left box-->
+        <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box-cot">
+            <div class="featured-image mb-3">
+                <img th:src="@{images/logo-login.png}" class="img-fluid"
+                     style="width: 500px;">
+            </div>
+            <p class="text-white fs-2" style="font-weight: 600;">Bienvenido</p>
+            <p class="text-white text-wrap text-center">Nos encargamos de vender los boletos de tus eventos y todo de
+                forma digital sin necesidad de boletos físicos</p>
+        </div>
+        <!--right box-->
+        <div class="col-md-6 right-box">
+            <div class="row align-items-center justify-content-center">
+                <div class="py-5">
+                    <div class="input-group mb-lg-4">
+                        <input type="text" class="form-control form-control-lg bg-light fs-6"
+                               placeholder="Nombre de la empresa">
+                    </div>
+                    <div class="input-group mb-lg-4">
+                        <input type="text" class="form-control form-control-lg bg-light fs-6"
+                               placeholder="Correo electrónico">
+                    </div>
+                    <div class="input-group mb-lg-4">
+                        <input type="text" class="form-control form-control-lg bg-light fs-6 py-10"
+                               placeholder="Teléfono de contacto">
+                    </div>
+                    <div class="input-group mb-lg-4">
+                        <input type="text" class="form-control form-control-lg bg-light fs-6 py-10"
+                               placeholder="Dirección">
+                    </div>
+                    <div class="input-group mb-lg-4">
+                        <select class="form-select bg-light">
+                            <option value="cultural">Cultural</option>
+                            <option value="deportivo">Deportivo</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-lg-4">
+                        <button type="submit" class="form-control form-control-lg btn btn-localidad">Enviar Datos
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<footer th:replace="~{layout/footer ::footer}"></footer>
+</body>
+</html>

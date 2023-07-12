@@ -63,7 +63,15 @@ public class PdfService {
     private File renderBoletoPdf(String html) throws Exception {
         File file = File.createTempFile("boleto", ".pdf");
         OutputStream outputStream = new FileOutputStream(file);
-        ITextRenderer renderer = new ITextRenderer(20f * 4f / 3f, 20);
+        //ITextRenderer renderer = new ITextRenderer(20f * 4f / 3f, 20);
+        float a4Width = 595f;
+        float a4Height = 842f;
+        float renderWidth = a4Width / 4f;
+        float renderHeight = a4Height / 4f;
+        int roundedRenderWidth = Math.round(renderWidth);
+        int roundedRenderHeight = Math.round(renderHeight);
+
+        ITextRenderer renderer = new ITextRenderer(roundedRenderWidth, roundedRenderHeight);
         renderer.setDocumentFromString(html, new ClassPathResource(PDF_RESOURCES_PATH).getURL().toExternalForm());
         renderer.layout();
         renderer.createPDF(outputStream);

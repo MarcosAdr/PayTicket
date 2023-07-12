@@ -7,7 +7,7 @@
     <header th:replace="~{layout/header :: header}"></header>
     <div class="contenedor head">
         <img class="d-flex" src="images/logos+eslogan/logo-index.png"
-             alt="logo"  height="200">
+             alt="logo" height="200">
         <h2>! Tu acceso online al entrentenimiento ¡</h2>
     </div>
 </div>
@@ -28,35 +28,46 @@
                 </div>
                 <div class="service">
                     <h3 class="n-service"><span class="number">3</span>Boletos Digitales</h3>
-                    <p>Tus boletos digitiales con QR único llegaran directamente a tu buzón de correo no lo compartas</p>
+                    <p>Tus boletos digitiales con QR único llegaran directamente a tu buzón de correo no lo
+                        compartas</p>
                 </div>
             </div>
         </div>
     </section>
-    <section class="contenedor">
-  <!--      <div class="text-center">
-            <form th:action="@{/searchEvent}" method="get"></form>
-            <input type="text" id="eventoInput" name="search" placeholder="Nombre del evento ..." autocomplete="off">
-            <button type="submit" class="btn btn-secondary">Buscar</button>
-        </div>
-        <div id="resultadosBusqueda">
+    <div class="line-section"></div>
+    <section class="gallery">
+        <div class="container py-2">
+            <h2 class="subtitulo">Eventos</h2>
+            <div class="row g-5 justify-content-evenly">
+                <div class="col-lg-6" th:each="evento: ${eventos}">
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-6 col-md-5">
+                                <img th:if="${#strings.length(evento.media) > 0}"
+                                     class="card-img img-fluid rounded-start"
+                                     th:src="@{'/evento/uploads/' + ${evento.media}}"
+                                     th:alt="${evento.media}"/>
+                            </div>
+                            <div class="col-6 col-md-7 justify-content-center">
+                                <div class="card-body d-flex flex-column py-6">
+                                    <div class="h-100 text-center">
+                                        <h3 class="card-title">Evento <span
+                                                th:text="${evento.tipoEvento.nombre}"></span></h3>
+                                        <h2 class="card-title"><span th:text="${evento.nombre}"></span></h2>
+                                        <p class="card-text">
+                                            <span th:text="${evento.descripcion}"></span>
+                                        </p>
+                                        <a th:href="@{${'/evento/ver/'+evento.id}}" class="btn btn-comprar"><i
+                                                class="bi bi-ticket-perforated-fill"></i> Comprar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        </div>-->
-        <div class="row">
-            <div class="col-md" th:each="evento:${eventos}">
-                <div class="card">
-                    <img th:if="${#strings.length(evento.media) > 0}" class="card-img img-fluid rounded-start"
-                         th:src="@{'/evento/uploads/' + ${evento.media}}"
-                         th:alt="${evento.media}"/>
-                    <h3 class="card-title">Evento <span th:text="${evento.tipoEvento.nombre}"></span></h3>
-                    <h2 class="card-title"><span th:text="${evento.nombre}"></span></h2>
-                    <a th:href="@{${'/evento/ver/'+evento.id}}" class="btn btn-success" ><i class="bi bi-ticket-perforated-fill"></i> Comprar</a>
                 </div>
             </div>
         </div>
-
-
-
     </section>
 </main>
 <footer th:replace="~{layout/footer :: footer}"></footer>

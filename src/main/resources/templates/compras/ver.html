@@ -9,25 +9,23 @@
             <div class="card">
                 <div class="card-body d-flex flex-column">
                     <div class="h-100">
-                        <h1>Mis compras</h1>
+                        <h1><i class="bi bi-cart-check"></i> Mis boletos</h1>
                         <table class="table table-light table-hover rounded-5">
                             <thead>
                             <tr>
-                                <th>#</th>
-                                <th>N° Transacción</th>
-                                <th>Fecha</th>
-                                <th>Evento</th>
-                                <th>Localidad</th>
-                                <th>Valor Unitario</th>
-                                <th>Cantidad</th>
-                                <th>Valor Total</th>
-                                <th>Ticket</th>
+                                <th># Boleto</th>
+                                <th>Fecha <i class="bi bi-bag-check"></i></th>
+                                <th>Evento <i class="bi bi-calendar-event"></i></th>
+                                <th>Localidad <i class="bi bi-diagram-2"></i></th>
+                                <th><i class="bi bi-currency-dollar"></i> Valor Unitario</th>
+                                <th><i class="bi bi-list-ol"></i> Cantidad</th>
+                                <th><i class="bi bi-currency-dollar"></i> Valor Total</th>
+                                <th><i class="bi bi-ticket-perforated"></i> Boleto</th>
                             </tr>
                             </thead>
                             <tbody class="table table-group-divider">
                             <tr th:each="compra, compraStat: ${compras}">
                                 <td th:text="${compraStat.count}"></td>
-                                <td th:text="${compra.idTransaccion}"></td>
                                 <td th:text="${compra.fechaTransaccion}"></td>
                                 <td th:text="${compra.localidad.evento.nombre}"></td>
                                 <td th:text="${compra.localidad.nombre}"></td>
@@ -36,11 +34,11 @@
                                 <td th:text="${compra.monto}"></td>
                                 <td>
                                     <input type="hidden" class="compra-id" th:value="${compra.id}">
-                                    <a class="btn btn-success generar-ticket-btn">Generar Ticket</a>
+                                    <a class="btn btn-success generar-ticket-btn">Generar Boleto <i class="bi bi-arrow-down-circle"></i></a>
                                     <div class="modal-advertencia" style="display: none;">
                                         <p class="text-danger">Al generar tu ticket no podrás generar otro. Verifica la
                                             información de tu compra o ponte en contacto con servicio al cliente.
-                                            <small><a href="/">Inicio</a></small>
+                                            <!--<small><a href="/">Inicio</a></small>-->
                                         </p>
 
                                         <div class="form-check">
@@ -49,7 +47,7 @@
                                             <label class="form-check-label" for="checkboxAceptar">Aceptar términos y
                                                 condiciones</label>
                                         </div>
-                                        <a class="btn btn-success btn-aceptar" disabled>Aceptar</a>
+                                        <a class="btn btn-success btn-aceptar">Aceptar</a>
                                     </div>
 
                                 </td>
@@ -67,6 +65,7 @@
 </div>
 </div>
 <script>
+
     var generarTicketButtons = document.querySelectorAll('.btn.btn-success');
 
     generarTicketButtons.forEach(function (button) {
@@ -102,14 +101,33 @@
             // Generar el enlace "/boleto/"+compraId
             enlaceAceptar.href = '/boleto/' + compraId;
 
+            // Deshabilitar el enlace "Aceptar" inicialmente
+            enlaceAceptar.disabled = true;
+
             // Agregar evento de cambio al checkbox
             checkboxAceptar.addEventListener('change', function () {
                 // Habilitar o deshabilitar el enlace "Aceptar" según el estado del checkbox
                 enlaceAceptar.disabled = !this.checked;
             });
+
+            // Agregar evento de clic al botón "Aceptar" del modal
+            enlaceAceptar.addEventListener('click', function () {
+                // Ocultar el modal de advertencia
+                modalAdvertencia.style.display = 'none';
+
+                // Crear elemento de texto con el mensaje "Boleto Retirado" en verde
+                var textoBoletoRetirado = document.createElement('span');
+                textoBoletoRetirado.textContent = 'Boleto Generado';
+                textoBoletoRetirado.classList.add('text-success');
+
+                // Reemplazar el botón por el elemento de texto
+                button.parentNode.replaceChild(textoBoletoRetirado, button);
+            });
         });
     });
-</script>
 
+
+</script>
+<!--<footer th:replace="~{layout/footer :: footer}"></footer>-->
 </body>
 </html>

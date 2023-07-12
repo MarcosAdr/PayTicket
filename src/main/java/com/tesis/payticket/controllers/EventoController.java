@@ -152,7 +152,7 @@ public class EventoController {
 
                 e.printStackTrace();
             }
-            flash.addFlashAttribute("info", "El Post publicitario se cargo correctamente '" + uniqueFilename + "'");
+            /*flash.addFlashAttribute("info", "El Post publicitario se cargo correctamente '" + uniqueFilename + "'");*/
             evento.setMedia(uniqueFilename);
         }
         Ubicacion ubicacion = null;
