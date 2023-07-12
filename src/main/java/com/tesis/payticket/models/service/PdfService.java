@@ -89,7 +89,7 @@ public class PdfService {
 
 
     private String loadAndFillTemplate(Context context) {
-        return springTemplateEngine.process("compras/ticket", context); // Cambia el nombre de la plantilla HTML según tus necesidades
+        return springTemplateEngine.process("compras/boleto", context); // Cambia el nombre de la plantilla HTML según tus necesidades
     }
 
 

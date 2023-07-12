@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @Entity
@@ -19,5 +21,13 @@ public class Boleto {
     @OneToOne(mappedBy = "boleto")
     private Compra compra;
 
+    @Column(name = "date_created", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateCreated;
+
+    @PrePersist
+    public void prePersist() {
+        dateCreated = new Date();
+    }
 
 }

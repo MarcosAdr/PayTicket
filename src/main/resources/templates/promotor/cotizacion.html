@@ -23,35 +23,37 @@
         <!--right box-->
         <div class="col-md-6 right-box">
             <div class="row align-items-center justify-content-center">
-                <div class="py-5">
-                    <div class="input-group mb-lg-4">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6"
-                               placeholder="Nombre de la empresa">
-                    </div>
-                    <div class="input-group mb-lg-4">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6"
-                               placeholder="Correo electrónico">
-                    </div>
-                    <div class="input-group mb-lg-4">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6 py-10"
-                               placeholder="Teléfono de contacto">
-                    </div>
-                    <div class="input-group mb-lg-4">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6 py-10"
-                               placeholder="Dirección">
-                    </div>
-                    <div class="input-group mb-lg-4">
-                        <select class="form-select bg-light">
-                            <option value="cultural">Cultural</option>
-                            <option value="deportivo">Deportivo</option>
-                        </select>
-                    </div>
-                    <div class="input-group mb-lg-4">
-                        <button type="submit" class="form-control form-control-lg btn btn-localidad">Enviar Datos
-                        </button>
-                    </div>
+                <form th:action="@{/contacto/form}" th:object="${promotor}" method="post">
+                    <div class="py-5">
+                        <div class="input-group mb-lg-4">
+                            <input type="text" class="form-control form-control-lg bg-light fs-6"
+                                   th:field="*{nombre}" placeholder="Nombre de la empresa">
+                        </div>
+                        <div class="input-group mb-lg-4">
+                            <input type="email" class="form-control form-control-lg bg-light fs-6"
+                                   th:field="*{email}" placeholder="Correo electrónico">
+                        </div>
+                        <div class="input-group mb-lg-4">
+                            <input type="text" class="form-control form-control-lg bg-light fs-6 py-10"
+                                   th:field="*{telefono}" placeholder="Teléfono de contacto">
+                        </div>
+                        <div class="input-group mb-lg-4">
+                            <input type="text" class="form-control form-control-lg bg-light fs-6 py-10"
+                                   th:field="*{direccion}" placeholder="Dirección">
+                        </div>
+                        <label>Tipo de Evento</label>
+                        <div class="input-group mb-lg-4">
+                            <select th:field="*{tipoEvento}" name="tipoEvento" class="form-control form-control-lg fs-6 bg-light">
+                                <option th:each="tipoEvento : ${tiposEvento}" th:value="${tipoEvento.id}"
+                                        th:text="${tipoEvento.nombre}"></option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-lg-4">
+                            <input type="submit" class="form-control form-control-lg btn btn-localidad">
+                        </div>
 
-                </div>
+                    </div>
+                </form>
             </div>
 
 
@@ -59,7 +61,7 @@
 
     </div>
 </div>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#5b77b9" fill-opacity="1" d="M0,32L30,80C60,128,120,224,180,218.7C240,213,300,107,360,90.7C420,75,480,149,540,154.7C600,160,660,96,720,74.7C780,53,840,75,900,122.7C960,171,1020,245,1080,277.3C1140,309,1200,299,1260,261.3C1320,224,1380,160,1410,128L1440,96L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path></svg>
 <footer th:replace="~{layout/footer ::footer}"></footer>
 </body>
 </html>

@@ -154,7 +154,14 @@ body{
 /*--------------------------------------------*/
 /*Footer*/
 footer{
-    background: #162132;
+    background: #5b77b9;
+    padding-bottom: 0.1px;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+.footer-in{
+    background: #5b77b9;
     padding-bottom: 0.1px;
     width: 100%;
     position: relative;

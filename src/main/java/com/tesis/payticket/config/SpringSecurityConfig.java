@@ -41,7 +41,7 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests((authz) -> {
                     try {
                         authz
-                                .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/index","/register","/evento/ver/**","/evento/uploads/**","/QRCode/**", "/quienSomos","/cotizacion").permitAll()
+                                .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/index","/register","/evento/ver/**","/evento/uploads/**","/QRCode/**", "/quienSomos","/contacto").permitAll()
                                 .requestMatchers("/localidad/**").hasRole("ADMIN")
                                 .requestMatchers("/evento/form/**").hasRole("ADMIN")
                                 .anyRequest().authenticated();

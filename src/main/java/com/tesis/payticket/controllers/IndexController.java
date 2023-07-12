@@ -18,14 +18,6 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/quienSomos")
-    public String quienSomos() {
-        return "descripcion";
-    }
 
-    @GetMapping("/cotizacion")
-    public String cotizacion() {
-        return "promotor/cotizacion";
-    }
 
 }
