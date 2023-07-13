@@ -36,7 +36,7 @@ public class BoletoController {
         Boleto boleto = boletoService.findOne(compra.getBoleto().getId());
 
         try {
-            Path file = Paths.get(pdfService.generateBoletoPdf(boleto.getId()).getAbsolutePath());
+            Path file = Paths.get(pdfService.generarBoletoPdf(boleto.getId()).getAbsolutePath());
             if (Files.exists(file)) {
                 response.setContentType("application/pdf");
                 response.addHeader("Content-Disposition", "attachment; filename=" + file.getFileName());

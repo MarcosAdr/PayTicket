@@ -31,7 +31,7 @@ public class PdfService {
 
 
 
-    public File generateBoletoPdf(Long id) throws Exception {
+    public File generarBoletoPdf(Long id) throws Exception {
         Boleto boleto = boletoService.findOne(id); // Obtener el boleto correspondiente al ID
 
         Context context = getContextBoletoPdf(boleto);
