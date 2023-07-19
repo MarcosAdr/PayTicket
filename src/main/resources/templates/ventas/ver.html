@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/head :: head}"></head>
+<body>
+<header th:replace="~{layout/header :: header}"></header>
+<div class="container py-4">
+
+    <h2 class="text-white">Selecciona un evento</h2>
+    <div class="input-group mb-3">
+        <select class="form-control form-control-lg fs-6" id="eventoSelect">
+            <option th:each="evento : ${eventos}" th:value="${evento.id}"
+                    th:text="${evento.nombre}"></option>
+        </select>
+        <button type="button" class="btn btn-localidad" onclick="mostrarDetallesEvento()">
+            <i class="bi bi-search" ></i> Buscar
+        </button>
+    </div>
+
+    <div id="detallesEvento" style="display: none;">
+        <h3>Detalles del evento:</h3>
+        <input type="text" id="nombreEvento" readonly>
+        <input type="number" id="totalBoletos" readonly>
+    </div>
+
+    <script>
+        function mostrarDetallesEvento() {
+            var selectElement = document.getElementById("eventoSelect");
+            var selectedOption = selectElement.options[selectElement.selectedIndex];
+            var eventoId = selectedOption.value;
+
+            // Realizar solicitud AJAX al controlador para obtener los detalles del evento por su ID
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/ventas/ver/" + eventoId, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var evento = JSON.parse(xhr.responseText);
+
+                    document.getElementById("nombreEvento").value = evento.nombre;
+                    document.getElementById("totalBoletos").value = evento.totalEntradas;
+                    document.getElementById("detallesEvento").style.display = "block";
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</div>
+</body>
+</html>

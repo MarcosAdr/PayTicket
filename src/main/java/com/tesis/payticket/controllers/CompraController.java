@@ -37,11 +37,6 @@ public class CompraController {
     @Autowired
     private IBoletoService boletoService;
 
-    @Autowired
-    private BoletoController boletoController;
-
-    @Autowired
-    private SpringTemplateEngine templateEngine;
 
     private QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
 
@@ -67,7 +62,7 @@ public class CompraController {
         Compra compra = compraService.findOne(compraId);
 
             String qrContent = "©PayTicket " + LocalDate.now() + "\n" +
-                    "ID: " + compra.getIdTransaccion() + "\n" +
+                    "ID: " + compra.getTransaccion() + "\n" +
                     "Fecha: " + compra.getFechaTransaccion() + "\n" +
                     "Valor: $" + compra.getMonto() + "\n" +
                     "Cantidad de boletos: " + compra.getCantidad() + "\n" +
@@ -77,7 +72,7 @@ public class CompraController {
 
             ByteArrayOutputStream qrOutputStream = qrCodeGenerator.generarCodigoQR(qrContent, 200, 200);
 
-            String qrImageName = "qr_" + compra.getIdTransaccion() + compra.getId() + compra.getLocalidad().getId() +
+            String qrImageName = "qr_" + compra.getTransaccion() + compra.getId() + compra.getLocalidad().getId() +
                     compra.getLocalidad().getEvento().getId() + compra.getCantidad() + ".png";
 
             qrCodeGenerator.guardarImagenQR(qrImageName, qrOutputStream.toByteArray());

@@ -6,7 +6,7 @@
 
 <div class="text-center">
     <h1 class="text-white" th:text="${titulo}"></h1>
-    <a th:href="@{/evento/form}" class="btn btn-secondary">Crear un evento</a>
+    <a th:href="@{/evento/form}" class="btn btn-localidad">Crear un evento</a>
 </div>
 
 <div class="container py-4" style="color:#162132 ">
@@ -43,11 +43,11 @@
                                     <strong> <span th:text="${evento.fechaEvento}"></span></strong>
                                 </h5>
                                 <div class="justify-content-center">
-                                    <div class="btn-group">
-                                        <a th:href="@{${'/evento/form/' + evento.id}}" class="btn btn-dark"><i
+                                    <div class="btn-group btn-lg">
+                                        <a th:href="@{${'/evento/form/' + evento.id}}" class="btn btn-localidad"><i
                                                 class="bi bi-pencil-square"></i> Editar
                                         </a>
-                                        <a th:href="@{${'/evento/eliminar/' + evento.id}}" class="btn btn-secondary"
+                                        <a th:href="@{${'/evento/eliminar/' + evento.id}}" class="btn btn-red"
                                            onclick="return confirm('Estás seguro de eliminar el evento seleccionado');"><i
                                                 class="bi bi-calendar2-x-fill"></i>
                                             Eliminar

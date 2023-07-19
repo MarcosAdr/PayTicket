@@ -18,6 +18,8 @@ public class Boleto {
 
     private String codigoQR;
 
+    private Boolean entregado;
+
     @OneToOne(mappedBy = "boleto")
     private Compra compra;
 

@@ -26,7 +26,7 @@
              weidth="14" height="14">
         <strong><label> Boleto</label></strong>
     </div>
-    <h3 th:text="${boleto.id} + '_'+ ${boleto.compra.idTransaccion}"></h3>
+    <h3 th:text="${boleto.id} + '_'+ ${boleto.compra.transaccion}"></h3>
     <strong><label><i class="bi bi-file-person"></i> Nombre y apellido</label></strong>
     <h3 th:text="${boleto.compra.usuario.nombre} + ' ' + ${boleto.compra.usuario.apellido}"></h3>
     <strong><label> <i class="bi bi-calendar2-check-fill"></i>Fecha:</label></strong>

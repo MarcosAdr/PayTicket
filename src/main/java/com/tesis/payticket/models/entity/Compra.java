@@ -17,17 +17,14 @@ public class Compra {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String idTransaccion;
+    private String transaccion;
 
-    private float monto;
+    private double monto;
 
     private int cantidad;
 
-    private String cardType;
-
     private Date fechaTransaccion;
 
-    private String lastN;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")

@@ -104,13 +104,13 @@ public class PaymentController {
 
             if (Arrays.asList(TRANSACTION_SUCCESS_STATUSES).contains(transaction.getStatus())) {
                 Compra compra = new Compra();
-                compra.setIdTransaccion(transaction.getId());
+                compra.setTransaccion(transaction.getId());
                 compra.setUsuario(usuario);
                 compra.setMonto(transaction.getAmount().floatValue());
                 compra.setLocalidad(localidad);
-                compra.setCardType(transaction.getCreditCard().getCardType());
+               // compra.setCardType(transaction.getCreditCard().getCardType());
                 compra.setFechaTransaccion(transaction.getCreatedAt().getTime());
-                compra.setLastN(transaction.getCreditCard().getLast4());
+               // compra.setLastN(transaction.getCreditCard().getLast4());
                 compra.setCantidad(cantidad);
                 compraService.save(compra);
 
