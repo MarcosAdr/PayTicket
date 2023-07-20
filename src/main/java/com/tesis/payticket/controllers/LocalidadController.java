@@ -98,7 +98,7 @@ public class LocalidadController {
 
         Evento evento = eventoService.findOne(idEvento);
         Localidad localidad = localidadService.findOne(idLocalidad);
-        int entradasDispo = evento.getTotalEntradas()+localidad.getEntradas();
+        int entradasDispo = evento.getTotalEntradas()+localidad.getBoletos();
         evento.setTotalEntradas(entradasDispo);
         eventoService.save(evento);
         model.put("evento",evento);
@@ -113,7 +113,7 @@ public class LocalidadController {
                            RedirectAttributes flash){
         Evento evento = eventoService.findOne(idEvento);
         Localidad localidad = localidadService.findOne(idLocalidad);
-        int entradasDispo = evento.getTotalEntradas()+localidad.getEntradas();
+        int entradasDispo = evento.getTotalEntradas()+localidad.getBoletos();
         evento.setTotalEntradas(entradasDispo);
         eventoService.save(evento);
 

@@ -24,7 +24,7 @@ public class Localidad {
     private String descripcion;
 
     @NotNull
-    private int entradas;
+    private int boletos;
 
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

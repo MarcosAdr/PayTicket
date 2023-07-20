@@ -12,10 +12,10 @@ INSERT INTO precio(precio) VALUES (3);
 INSERT INTO precio(precio) VALUES (2.5);
 INSERT INTO precio(precio) VALUES (10);
 
-INSERT INTO localidad(nombre, descripcion, entradas, evento_id ,precio_id) VALUES('General', 'Público en general', 50,1,1);
-INSERT INTO localidad(nombre, descripcion, entradas, evento_id ,precio_id) VALUES('Preferencia', 'Butacas autoridades', 50,1,2);
-INSERT INTO localidad(nombre, descripcion, entradas, evento_id ,precio_id) VALUES('General', 'Público en general', 25,2,3);
-INSERT INTO localidad(nombre, descripcion, entradas, evento_id ,precio_id) VALUES('VIP', 'Autoridades', 25,2,4);
+INSERT INTO localidad(nombre, descripcion, boletos, evento_id ,precio_id) VALUES('General', 'Público en general', 50,1,1);
+INSERT INTO localidad(nombre, descripcion, boletos, evento_id ,precio_id) VALUES('Preferencia', 'Butacas autoridades', 50,1,2);
+INSERT INTO localidad(nombre, descripcion, boletos, evento_id ,precio_id) VALUES('General', 'Público en general', 25,2,3);
+INSERT INTO localidad(nombre, descripcion, boletos, evento_id ,precio_id) VALUES('VIP', 'Autoridades', 25,2,4);
 
 INSERT INTO usuario(username,nombre,apellido,email, password, enabled) VALUES('marcosadr','marcos','lobato','marcoslobato98@gmail.com','$2a$10$Sbf6y6ictIHUkyqYnKNKCOyPzzQW3Rk2943BEtiO0hPDmFabT6A2i',1);
 INSERT INTO usuario(username,nombre,apellido,email, password, enabled) VALUES('admin','marcos','lobato','marcosadmin@gmail.com','$2a$10$qhDmG1Ewl9NybPXfxw9Vyeivd24vi0hchZIJXWHc1fnSSaYRjM3ZO',1);
