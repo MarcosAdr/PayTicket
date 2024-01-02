@@ -22,7 +22,6 @@ public class QRCodeGenerator {
             MatrixToImageWriter.writeToStream(matrix, "PNG", outputStream);
             return outputStream;
         } catch (WriterException | IOException e) {
-
             e.printStackTrace();
             return null;
         }

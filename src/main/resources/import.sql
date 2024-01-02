@@ -7,6 +7,8 @@ INSERT INTO evento (fecha_evento, hora_fin, hora_inicio, date_created, last_upda
 INSERT INTO evento (fecha_evento, hora_fin, hora_inicio, date_created, last_update, descripcion, media, nombre, total_entradas, tipo_evento_id) VALUES ('2023-05-26', '21:30:00', '22:30:00', '2023-05-25 12:00:00', '2023-05-26 12:00:00', 'Descripcion del evento 3', 'Imagen 3', 'Evento 3',100,1);
 INSERT INTO evento (fecha_evento, hora_fin, hora_inicio, date_created, last_update, descripcion, media, nombre, total_entradas, tipo_evento_id) VALUES ('2023-05-26', '21:30:00', '22:30:00', '2023-05-25 12:00:00', '2023-05-26 12:00:00', 'Descripcion del evento 4', 'Imagen 4', 'Evento 4',50,2);
 
+
+
 INSERT INTO precio(precio) VALUES (5);
 INSERT INTO precio(precio) VALUES (3);
 INSERT INTO precio(precio) VALUES (2.5);

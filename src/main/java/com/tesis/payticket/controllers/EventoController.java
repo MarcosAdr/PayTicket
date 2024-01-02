@@ -42,6 +42,9 @@ public class EventoController {
     @Autowired
     private IUbicacionService ubicacionService;
 
+    /*@Autowired
+    private List<Ubicacion> localidades;*/
+
     @Autowired
     private IUploadFileService uploadFileService;
 
@@ -71,7 +74,7 @@ public class EventoController {
 
         model.put("evento", evento);
         model.put("tipoEvento", evento.getTipoEvento());
-    /*     model.put("localidades", localidades); */
+        /*model.put("localidades", localidades);*/
         model.put("titulo", "Detalle del evento");
         return "evento/ver";
     }

@@ -84,7 +84,7 @@
                             <tbody class="table-hover table-group-divider text-center">
                                 <tr th:each="localidad: ${evento.localidades}">
                                     <td th:text="${localidad.nombre}"></td>
-                                    <td th:text="${localidad.boletos}"></td>
+                                    <!--<td th:text="${localidad.boletos}"></td>-->
                                     <td th:text="'c/u $'+${localidad.precio.precio}"></td>
                                     <td>
                                         <a th:href="@{${'/localidad/form/'+localidad.evento.id+'/'+localidad.id}}"
