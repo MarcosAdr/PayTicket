@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/app.css" th:href="@{/css/app.css}" />
     <link rel="icon" type="image/png" href="/images/payment/favicon.png" th:href="@{/images/payment/favicon.png}"/>
-    
+
 <script src="http://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -46,7 +46,8 @@
             <span class="input-label">Valor a pagar</span>
             <div class="input-wrapper amount-wrapper">
               <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" th:value="${total}" disabled/>
-              <input type="hidden" name="pago" th:value="${total}">
+<!--              <input  type="hidden" name="total" th:value="${total}">-->
+              <input  type="hidden" name="total" th:value="${total}">
               <input type="hidden" name="cantidad" th:value="${cantidad}">
               <input type="hidden" name="localidadId" th:value="${localidadId}">
             </div>

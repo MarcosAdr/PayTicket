@@ -27,6 +27,8 @@ import com.braintreegateway.TransactionRequest;
 import com.braintreegateway.ValidationError;
 import com.braintreegateway.Transaction.Status;
 
+import java.util.logging.Logger;
+
 
 @Controller
 public class PaymentController {
@@ -45,6 +47,8 @@ public class PaymentController {
 
     @Autowired
     ILocalidadService localidadService;
+
+    //private static final Logger logger = Logger.getLogger();
 
     private final Status[] TRANSACTION_SUCCESS_STATUSES = new Status[]{
             Transaction.Status.AUTHORIZED,
@@ -70,17 +74,20 @@ public class PaymentController {
     }
 
     @RequestMapping(value = "/checkouts", method = RequestMethod.POST)
-    public String postForm(@RequestParam("pago") String amount, @RequestParam("payment_method_nonce") String nonce, Model model,
+    public String postForm(Model model,
+                           @RequestParam("total") String amount,
+                           @RequestParam("payment_method_nonce") String nonce,
                            @RequestParam("localidadId") Long idLocalidad,
                            @RequestParam("cantidad") int cantidad,
                            final RedirectAttributes redirectAttributes) {
 
+        //logger.info("Received total amount: " + amount);
         BigDecimal decimalAmount;
         try {
             decimalAmount = new BigDecimal(amount);
         } catch (NumberFormatException e) {
             redirectAttributes.addFlashAttribute("errorDetails", "Error: 81503: Amount is an invalid format.");
-            return "redirect:checkouts";
+            return "redirect:/checkouts";
         }
 
         TransactionRequest request = new TransactionRequest()
@@ -100,7 +107,7 @@ public class PaymentController {
 
             Usuario usuario = usuarioService.findByUsername(username);
 
-            Localidad localidad =  localidadService.findOne(idLocalidad);
+            Localidad localidad = localidadService.findOne(idLocalidad);
 
             if (Arrays.asList(TRANSACTION_SUCCESS_STATUSES).contains(transaction.getStatus())) {
                 Compra compra = new Compra();
@@ -108,29 +115,25 @@ public class PaymentController {
                 compra.setUsuario(usuario);
                 compra.setMonto(transaction.getAmount().floatValue());
                 compra.setLocalidad(localidad);
-               // compra.setCardType(transaction.getCreditCard().getCardType());
                 compra.setFechaTransaccion(transaction.getCreatedAt().getTime());
-               // compra.setLastN(transaction.getCreditCard().getLast4());
                 compra.setCantidad(cantidad);
                 compraService.save(compra);
-
             }
 
-
-            return "redirect:checkouts/" + transaction.getId();
+            return "redirect:/checkouts/" + transaction.getId();
         } else if (result.getTransaction() != null) {
             Transaction transaction = result.getTransaction();
-            return "redirect:checkouts/" + transaction.getId();
+            return "redirect:/checkouts/" + transaction.getId();
         } else {
             StringBuilder errorString = new StringBuilder();
             for (ValidationError error : result.getErrors().getAllDeepValidationErrors()) {
                 errorString.append("Error: ").append(error.getCode()).append(": ").append(error.getMessage()).append("\n");
             }
             redirectAttributes.addFlashAttribute("errorDetails", errorString.toString());
-            return "redirect:checkouts";
+            return "redirect:/checkouts";
         }
-
     }
+
 
     @RequestMapping(value = "/checkouts/{transactionId}")
     public String getTransaction(@PathVariable String transactionId, Model model) {
